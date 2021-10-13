@@ -704,9 +704,9 @@ while true; do
     echo "        5   ->  NetScan                           16  ->  FileScan"
     echo "        6   ->  DllList                           17  ->  SvcScan"       
     echo "        7   ->  Handles                           18  ->  CmdLine"
-    echo "        8   ->  GetSIDs                           19  ->  ProcDump (.exe)"
+    echo "        8   ->  GetSIDs                           19  ->  MalFind"
     echo "        9   ->  Registry HiveList                 20  ->  MemDump (.dmp)"
-    echo "        10  ->  Registry HiveScan                 21  ->  MalFind"
+    echo "        10  ->  Registry HiveScan                 21  ->  ProcDump (.exe)"
     echo "        11  ->  Registry UserAssist               99  ->  Exit"
     echo 
     read -p ' >> Which Operation you wish to perform? ' op
@@ -729,9 +729,9 @@ while true; do
         16) echo ; FileScan;;
         17) echo ; SvcScan;;
         18) echo ; CmdLine;;
-        19) echo ; ProcDump;;
+        19) echo ; MalFind;;
         20) echo ; MemDump;;
-        21) echo ; MalFind;;
+        21) echo ; ProcDump;;
         99) good_bye;;
         * )  echo ; echo ' >> Please answer in range (1-21) or 99 to exit ...'; echo ;;
     esac
