@@ -61,7 +61,7 @@ ImageInfo_vol2() {
         while true; do
         read -p ' >> Do you want to store the Output? [ Y/n/(q)uit ] ' yn
         case $yn in
-            [Yy]* )  echo ' >> Starting with ImageInfo (Using Volatility 2) ...'; echo ; $volatility2 imageinfo > Vol2_ImageInfo.txt; echo ; echo "Output saved in '$PWD/Vol2_ImageInfo.txt' "; echo ; break;;
+            [Yy]* )  echo ' >> Starting with ImageInfo (Using Volatility 2) ...'; echo ; $volatility2 imageinfo > Vol2_ImageInfo.txt; echo ; echo " >> Output saved in '$PWD/Vol2_ImageInfo.txt' "; echo ; break;;
             [Nn]* )  echo ' >> Starting with ImageInfo (Using Volatility 2) ...'; echo ; $volatility2 imageinfo; echo ; break;;
             [Qq]* ) echo ; break;;
             * )  echo ; echo ' >> Please answer yes or no ...';;
@@ -74,7 +74,7 @@ ImageInfo_vol3() {
         while true; do
         read -p ' >> Do you want to store the Output? [ Y/n/(q)uit ] ' yn
         case $yn in
-            [Yy]* )  echo ' >> Starting with ImageInfo (Using Volatility 3) ...'; echo ; $volatility windows.info > Vol3_ImageInfo.txt; echo ; echo "Output saved in '$PWD/Vol3_ImageInfo.txt' "; echo ; break;;
+            [Yy]* )  echo ' >> Starting with ImageInfo (Using Volatility 3) ...'; echo ; $volatility windows.info > Vol3_ImageInfo.txt; echo ; echo " >> Output saved in '$PWD/Vol3_ImageInfo.txt' "; echo ; break;;
             [Nn]* )  echo ' >> Starting with ImageInfo (Using Volatility 3) ...'; echo ; $volatility windows.info; echo ; break;;
             [Qq]* ) echo ; break;;
             * )  echo ; echo ' >> Please answer yes or no ...';;
@@ -100,7 +100,7 @@ ImageInfo() {
     # # echo "$volatility2 imageinfo > vol2_image_profile.txt"
     # $volatility2 imageinfo > vol2_image_profile.txt
     # echo 
-    # echo "Output saved in '$PWD/vol2_image_profile.txt' "
+    # echo " >> Output saved in '$PWD/vol2_image_profile.txt' "
     # echo 
 }
 # while true; do
@@ -120,7 +120,7 @@ PsList() {
     while true; do
         read -p ' >> Do you want to store the Output? [ Y/n/(q)uit ] ' yn
         case $yn in
-            [Yy]* )  echo ' >> Starting with PsList ...'; echo ; $volatility $render_csv windows.pslist > PsList.csv; echo ; echo "Output saved in '$PWD/PsList.csv' "; echo ; break;;
+            [Yy]* )  echo ' >> Starting with PsList ...'; echo ; $volatility $render_csv windows.pslist > PsList.csv; echo ; echo " >> Output saved in '$PWD/PsList.csv' "; echo ; break;;
             [Nn]* )  echo ' >> Starting with PsList ...'; echo ; $volatility $render_pretty windows.pslist; echo ; break;;
             [Qq]* ) echo ; break;;
             * )  echo ; echo ' >> Please answer yes or no ...';;
@@ -149,7 +149,7 @@ PsTree() {
     while true; do
         read -p ' >> Do you want to store the Output? [ Y/n/(q)uit ] ' yn
         case $yn in
-            [Yy]* )  echo ' >> Starting with PsTree ...'; echo ; $volatility $render_csv windows.pstree > PsTree.csv; echo ; echo "Output saved in '$PWD/PsTree.csv' "; echo ; break;;
+            [Yy]* )  echo ' >> Starting with PsTree ...'; echo ; $volatility $render_csv windows.pstree > PsTree.csv; echo ; echo " >> Output saved in '$PWD/PsTree.csv' "; echo ; break;;
             [Nn]* )  echo ' >> Starting with PsTree ...'; echo ; $volatility $render_pretty windows.pstree; echo ; break;;
             [Qq]* ) echo ; break;;
             * )  echo ; echo ' >> Please answer yes or no ...';;
@@ -178,7 +178,7 @@ PsScan() {
     while true; do
         read -p ' >> Do you want to store the Output? [ Y/n/(q)uit ] ' yn
         case $yn in
-            [Yy]* )  echo ' >> Starting with PsScan ...'; echo ; $volatility $render_csv windows.psscan > PsScan.csv; echo ; echo "Output saved in '$PWD/PsScan.csv' "; echo ; break;;
+            [Yy]* )  echo ' >> Starting with PsScan ...'; echo ; $volatility $render_csv windows.psscan > PsScan.csv; echo ; echo " >> Output saved in '$PWD/PsScan.csv' "; echo ; break;;
             [Nn]* )  echo ' >> Starting with PsScan ...'; echo ; $volatility $render_pretty windows.psscan; echo ; break;;
             [Qq]* ) echo ; break;;
             * )  echo ; echo ' >> Please answer yes or no ...';;
@@ -207,7 +207,7 @@ NetScan() {
     while true; do
         read -p ' >> Do you want to store the Output? [ Y/n/(q)uit ] ' yn
         case $yn in
-            [Yy]* )  echo ' >> Starting with NetScan ...'; echo ; $volatility $render_csv windows.netscan > NetScan.csv; echo ; echo "Output saved in '$PWD/NetScan.csv' "; echo ; break;;
+            [Yy]* )  echo ' >> Starting with NetScan ...'; echo ; $volatility $render_csv windows.netscan > NetScan.csv; echo ; echo " >> Output saved in '$PWD/NetScan.csv' "; echo ; break;;
             [Nn]* )  echo ' >> Starting with NetScan ...'; echo ; $volatility $render_pretty windows.netscan; echo ; break;;
             [Qq]* ) echo ; break;;
             * )  echo ; echo ' >> Please answer yes or no ...';;
@@ -218,7 +218,7 @@ NetScan() {
     # echo 
     # $volatility $render_pretty windows.netscan > netscan.csv
     # echo 
-    # echo "Output saved in '$PWD/netscan.csv' "
+    # echo " >> Output saved in '$PWD/netscan.csv' "
     # echo 
 }
 # while true; do
@@ -240,7 +240,7 @@ DllList() {
     while true; do
         read -p ' >> Do you want to store the Output? [ Y/n/(q)uit ] ' yn
         case $yn in
-            [Yy]* )  echo ' >> Starting with DllList ...'; echo ; $volatility $render_csv windows.dlllist --pid $read_dll > DllList.csv; echo ; echo "Output saved in '$PWD/DllList.csv' "; echo ; break;;
+            [Yy]* )  echo ' >> Starting with DllList ...'; echo ; $volatility $render_csv windows.dlllist --pid $read_dll > DllList.csv; echo ; echo " >> Output saved in '$PWD/DllList.csv' "; echo ; break;;
             [Nn]* )  echo ' >> Starting with DllList ...'; echo ; $volatility $render_pretty windows.dlllist --pid $read_dll; echo ; break;;
             [Qq]* ) echo ; break;;
             * )  echo ; echo ' >> Please answer yes or no ...';;
@@ -272,7 +272,7 @@ Handles() {
     while true; do
         read -p ' >> Do you want to store the Output? [ Y/n/(q)uit ] ' yn
         case $yn in
-            [Yy]* )  echo ' >> Starting with Handles ...'; echo ; $volatility $render_csv windows.handles --pid $read_handles > Handles.csv; echo ; echo "Output saved in '$PWD/Handles.csv' "; echo ; break;;
+            [Yy]* )  echo ' >> Starting with Handles ...'; echo ; $volatility $render_csv windows.handles --pid $read_handles > Handles.csv; echo ; echo " >> Output saved in '$PWD/Handles.csv' "; echo ; break;;
             [Nn]* )  echo ' >> Starting with Handles ...'; echo ; $volatility $render_pretty windows.handles --pid $read_handles; echo ; break;;
             [Qq]* ) echo ; break;;
             * )  echo ; echo ' >> Please answer yes or no ...';;
@@ -305,7 +305,7 @@ GetSIDs() {
     while true; do
         read -p ' >> Do you want to store the Output? [ Y/n/(q)uit ] ' yn
         case $yn in
-            [Yy]* )  echo ' >> Starting with GetSIDs ...'; echo ; $volatility $render_csv windows.getsids --pid $read_sids > GetSIDs.csv; echo ; echo "Output saved in '$PWD/GetSIDs.csv' "; echo ; break;;
+            [Yy]* )  echo ' >> Starting with GetSIDs ...'; echo ; $volatility $render_csv windows.getsids --pid $read_sids > GetSIDs.csv; echo ; echo " >> Output saved in '$PWD/GetSIDs.csv' "; echo ; break;;
             [Nn]* )  echo ' >> Starting with GetSIDs ...'; echo ; $volatility $render_pretty windows.getsids --pid $read_sids; echo ; break;;
             [Qq]* ) echo ; break;;
             * )  echo ; echo ' >> Please answer yes or no ...';;
@@ -335,7 +335,7 @@ RegistryHiveList() {
     while true; do
         read -p ' >> Do you want to store the Output? [ Y/n/(q)uit ] ' yn
         case $yn in
-            [Yy]* )  echo ' >> Starting with Registry HiveList (For Virtual Memory) ...'; echo ; $volatility $render_csv windows.registry.hivelist > RegistryHiveList.csv; echo ; echo "Output saved in '$PWD/RegistryHiveList.csv' "; echo ; break;;
+            [Yy]* )  echo ' >> Starting with Registry HiveList (For Virtual Memory) ...'; echo ; $volatility $render_csv windows.registry.hivelist > RegistryHiveList.csv; echo ; echo " >> Output saved in '$PWD/RegistryHiveList.csv' "; echo ; break;;
             [Nn]* )  echo ' >> Starting with Registry HiveList (For Virtual Memory) ...'; echo ; $volatility $render_pretty windows.registry.hivelist; echo ; break;;
             [Qq]* ) echo ; break;;
             * )  echo ; echo ' >> Please answer yes or no ...';;
@@ -364,7 +364,7 @@ RegistryHiveScan() {
     while true; do
         read -p ' >> Do you want to store the Output? [ Y/n/(q)uit ] ' yn
         case $yn in
-            [Yy]* )  echo ' >> Starting with Registry HiveScan (For Physical Memory) ...'; echo ; $volatility $render_csv windows.registry.hivescan > RegistryHiveScan.csv; echo ; echo "Output saved in '$PWD/RegistryHiveScan.csv' "; echo ; break;;
+            [Yy]* )  echo ' >> Starting with Registry HiveScan (For Physical Memory) ...'; echo ; $volatility $render_csv windows.registry.hivescan > RegistryHiveScan.csv; echo ; echo " >> Output saved in '$PWD/RegistryHiveScan.csv' "; echo ; break;;
             [Nn]* )  echo ' >> Starting with Registry HiveScan (For Physical Memory) ...'; echo ; $volatility $render_pretty windows.registry.hivescan; echo ; break;;
             [Qq]* ) echo ; break;;
             * )  echo ; echo ' >> Please answer yes or no ...';;
@@ -395,7 +395,7 @@ RegistryUserAssist() {
     while true; do
         read -p ' >> Do you want to store the Output? [ Y/n/(q)uit ] ' yn
         case $yn in
-            [Yy]* )  echo ' >> Starting with Registry UserAssist ...'; echo ; $volatility windows.registry.userassist | egrep "$read_userassist" > RegistryUserAssist.txt; echo ; echo "Output saved in '$PWD/RegistryUserAssist.txt' "; echo ; break;;
+            [Yy]* )  echo ' >> Starting with Registry UserAssist ...'; echo ; $volatility windows.registry.userassist | egrep "$read_userassist" > RegistryUserAssist.txt; echo ; echo " >> Output saved in '$PWD/RegistryUserAssist.txt' "; echo ; break;;
             [Nn]* )  echo ' >> Starting with Registry UserAssist ...'; echo ; $volatility windows.registry.userassist | egrep "$read_userassist" ; echo ; break;;
             [Qq]* ) echo ; break;;
             * )  echo ; echo ' >> Please answer yes or no ...';;
@@ -426,7 +426,7 @@ TimeLiner() {
     while true; do
         read -p ' >> Do you want to store the Output? [ Y/n/(q)uit ] ' yn
         case $yn in
-            [Yy]* )  echo ' >> Starting with TimeLiner ...'; echo ; $volatility $render_csv timeliner > TimeLiner.csv; echo ; echo "Output saved in '$PWD/TimeLiner.csv' "; echo ; break;;
+            [Yy]* )  echo ' >> Starting with TimeLiner ...'; echo ; $volatility $render_csv timeliner > TimeLiner.csv; echo ; echo " >> Output saved in '$PWD/TimeLiner.csv' "; echo ; break;;
             [Nn]* )  echo ' >> Starting with TimeLiner ...'; echo ; $volatility $render_pretty timeliner; echo ; break;;
             [Qq]* ) echo ; break;;
             * )  echo ; echo ' >> Please answer yes or no ...';;
@@ -437,7 +437,7 @@ TimeLiner() {
     # echo 
     # $volatility $render_csv timeliner > timeliner.csv 
     # echo 
-    # echo "Output saved in '$PWD/timeliner.csv' "
+    # echo " >> Output saved in '$PWD/timeliner.csv' "
     # echo 
 }
 # while true; do
@@ -457,7 +457,7 @@ HashDump() {
     while true; do
         read -p ' >> Do you want to store the Output? [ Y/n/(q)uit ] ' yn
         case $yn in
-            [Yy]* )  echo ' >> Starting with HashDump ...'; echo ; $volatility $render_csv windows.hashdump > HashDump.csv; echo ; echo "Output saved in '$PWD/HashDump.csv' "; echo ; break;;
+            [Yy]* )  echo ' >> Starting with HashDump ...'; echo ; $volatility $render_csv windows.hashdump > HashDump.csv; echo ; echo " >> Output saved in '$PWD/HashDump.csv' "; echo ; break;;
             [Nn]* )  echo ' >> Starting with HashDump ...'; echo ; $volatility $render_pretty windows.hashdump; echo ; break;;
             [Qq]* ) echo ; break;;
             * )  echo ; echo ' >> Please answer yes or no ...';;
@@ -486,7 +486,7 @@ ModScan() {
     while true; do
         read -p ' >> Do you want to store the Output? [ Y/n/(q)uit ] ' yn
         case $yn in
-            [Yy]* )  echo ' >> Starting with ModScan ...'; echo ; $volatility $render_csv windows.modscan > ModScan.csv; echo ; echo "Output saved in '$PWD/ModScan.csv' "; echo ; break;;
+            [Yy]* )  echo ' >> Starting with ModScan ...'; echo ; $volatility $render_csv windows.modscan > ModScan.csv; echo ; echo " >> Output saved in '$PWD/ModScan.csv' "; echo ; break;;
             [Nn]* )  echo ' >> Starting with ModScan ...'; echo ; $volatility $render_pretty windows.modscan; echo ; break;;
             [Qq]* ) echo ; break;;
             * )  echo ; echo ' >> Please answer yes or no ...';;
@@ -515,7 +515,7 @@ LsaDump() {
     while true; do
         read -p ' >> Do you want to store the Output? [ Y/n/(q)uit ] ' yn
         case $yn in
-            [Yy]* )  echo ' >> Starting with LsaDump ...'; echo ; $volatility windows.lsadump > LsaDump.txt; echo ; echo "Output saved in '$PWD/LsaDump.txt' "; echo ; break;;
+            [Yy]* )  echo ' >> Starting with LsaDump ...'; echo ; $volatility windows.lsadump > LsaDump.txt; echo ; echo " >> Output saved in '$PWD/LsaDump.txt' "; echo ; break;;
             [Nn]* )  echo ' >> Starting with LsaDump ...'; echo ; $volatility windows.lsadump; echo ; break;;
             [Qq]* ) echo ; break;;
             * )  echo ; echo ' >> Please answer yes or no ...';;
@@ -535,7 +535,7 @@ FileScan() {
     while true; do
         read -p ' >> Do you want to store the Output? [ Y/n/(q)uit ] ' yn
         case $yn in
-            [Yy]* )  echo ' >> Starting with FileScan ...'; echo ; $volatility $render_csv windows.filescan > FileScan.csv; echo ; echo "Output saved in '$PWD/FileScan.csv' "; echo ; break;;
+            [Yy]* )  echo ' >> Starting with FileScan ...'; echo ; $volatility $render_csv windows.filescan > FileScan.csv; echo ; echo " >> Output saved in '$PWD/FileScan.csv' "; echo ; break;;
             [Nn]* )  echo ' >> Starting with FileScan ...'; echo ; $volatility $render_pretty windows.filescan; echo ; break;;
             [Qq]* ) echo ; break;;
             * )  echo ; echo ' >> Please answer yes or no ...';;
@@ -546,7 +546,7 @@ FileScan() {
     # echo 
     # $volatility $render_csv windows.filescan > filescan.csv
     # echo 
-    # echo "Output saved in '$PWD/filescan.csv' "
+    # echo " >> Output saved in '$PWD/filescan.csv' "
     # echo 
 }
 # while true; do
@@ -566,7 +566,7 @@ SvcScan() {
     while true; do
         read -p ' >> Do you want to store the Output? [ Y/n/(q)uit ] ' yn
         case $yn in
-            [Yy]* )  echo ' >> Starting with SvcScan ...'; echo ; $volatility $render_csv windows.svcscan > SvcScan.csv; echo ; echo "Output saved in '$PWD/SvcScan.csv' "; echo ; break;;
+            [Yy]* )  echo ' >> Starting with SvcScan ...'; echo ; $volatility $render_csv windows.svcscan > SvcScan.csv; echo ; echo " >> Output saved in '$PWD/SvcScan.csv' "; echo ; break;;
             [Nn]* )  echo ' >> Starting with SvcScan ...'; echo ; $volatility $render_pretty windows.svcscan; echo ; break;;
             [Qq]* ) echo ; break;;
             * )  echo ; echo ' >> Please answer yes or no ...';;
@@ -577,7 +577,7 @@ SvcScan() {
     # echo 
     # $volatility $render_csv windows.svcscan > svcscan.csv
     # echo 
-    # echo "Output saved in '$PWD/svcscan.csv' "
+    # echo " >> Output saved in '$PWD/svcscan.csv' "
     # echo 
 }
 # while true; do
@@ -597,7 +597,7 @@ CmdLine() {
     while true; do
         read -p ' >> Do you want to store the Output? [ Y/n/(q)uit ] ' yn
         case $yn in
-            [Yy]* )  echo ' >> Starting with CmdLine ...'; echo ; $volatility $render_csv windows.cmdline > CmdLine.csv; echo ; echo "Output saved in '$PWD/CmdLine.csv' "; echo ; break;;
+            [Yy]* )  echo ' >> Starting with CmdLine ...'; echo ; $volatility $render_csv windows.cmdline > CmdLine.csv; echo ; echo " >> Output saved in '$PWD/CmdLine.csv' "; echo ; break;;
             [Nn]* )  echo ' >> Starting with CmdLine ...'; echo ; $volatility $render_pretty windows.cmdline; echo ; break;;
             [Qq]* ) echo ; break;;
             * )  echo ; echo ' >> Please answer yes or no ...';;
@@ -608,7 +608,7 @@ CmdLine() {
     # echo 
     # $volatility $render_csv windows.cmdline > cmdline.csv
     # echo 
-    # echo "Output saved in '$PWD/cmdline.csv' "
+    # echo " >> Output saved in '$PWD/cmdline.csv' "
     # echo 
 }
 # while true; do
@@ -628,7 +628,7 @@ MalFind() {
     while true; do
         read -p ' >> Do you want to store the Output? [ Y/n/(q)uit ] ' yn
         case $yn in
-            [Yy]* )  echo ' >> Starting with MalFind ...'; echo ' >> These can be Malicious (As suggested by Volatility Framework)' ; echo ; $volatility windows.malfind > MalFind.txt; echo ; echo "Output saved in '$PWD/MalFind.txt' "; echo ; break;;
+            [Yy]* )  echo ' >> Starting with MalFind ...'; echo ' >> These can be Malicious (As suggested by Volatility Framework)' ; echo ; $volatility windows.malfind > MalFind.txt; echo ; echo " >> Output saved in '$PWD/MalFind.txt' "; echo ; break;;
             [Nn]* )  echo ' >> Starting with MalFind ...'; echo ' >> These can be Malicious (As suggested by Volatility Framework)' ; echo ; $volatility windows.malfind; echo ; break;;
             [Qq]* ) echo ; break;;
             * )  echo ; echo ' >> Please answer yes or no ...';;
@@ -661,7 +661,7 @@ MemDump() {
     echo 
     $volatility windows.pslist --dump --pid $read_dump
     echo 
-    echo "Output saved in '$PWD/pid.*.dmp' "
+    echo " >> Output saved in '$PWD/pid.*.dmp' "
     echo 
 }
 # while true; do
@@ -685,8 +685,8 @@ ProcDump() {
     echo 
     $volatility2 --profile $image_profile procdump -p $read_procdump -D .
     echo 
-    echo "Output saved in '$PWD/executable.*.exe' "
-    # echo Output saved in $PWD/cmdline.csv 
+    echo " >> Output saved in '$PWD/executable.*.exe' "
+    # echo  >> Output saved in $PWD/cmdline.csv 
     # echo 
 }
 
