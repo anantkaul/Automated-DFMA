@@ -681,7 +681,7 @@ ProcDump() {
     read -p ' >> Which PID you want to dump out? : ' read_procdump 
     read -p ' >> Which ImageProfile you want to use? : ' image_profile 
     echo 
-    echo ' >> Finally Dumping out the Required Executable (exe) ...'
+    echo ' >> Dumping out the Required Executable (exe) ...'
     echo 
     $volatility2 --profile $image_profile procdump -p $read_procdump -D .
     echo 
