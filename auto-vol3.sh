@@ -660,7 +660,8 @@ MemDump() {
     echo ' >> Dumping out the Required Process (dmp) ...'
     echo 
     $volatility windows.pslist --dump --pid $read_dump
-    # echo Output saved in $PWD/cmdline.csv 
+    echo 
+    echo "Output saved in '$PWD/pid.*.dmp' "
     echo 
 }
 # while true; do
@@ -677,11 +678,15 @@ ProcDump() {
 
     echo '###############################################################################' | lolcat
     echo 
+    read -p 'Which PID you want to dump out? : ' read_procdump 
+    echo
     read -p ' >> Which ImageProfile you want to use? : ' image_profile 
     echo 
     echo ' >> Finally Dumping out the Required Executable (exe) ...'
     echo 
-    $volatility2 --profile $image_profile procdump -p $read_dump -D .
+    $volatility2 --profile $image_profile procdump -p $read_procdump -D .
+    echo 
+    echo "Output saved in '$PWD/pid.*.exe' "
     # echo Output saved in $PWD/cmdline.csv 
     # echo 
 }
