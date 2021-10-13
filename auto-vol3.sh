@@ -56,17 +56,42 @@ fi
 # mkdir out
 cd $DIR
 
+ImageInfo_vol2() {
+
+        while true; do
+        read -p ' >> Do you want to store the Output? [ Y/n/(q)uit ] ' yn
+        case $yn in
+            [Yy]* )  echo ' >> Starting with ImageInfo (Using Volatility 2) ...'; echo ; $volatility2 imageinfo > Vol2_ImageInfo.txt; echo ; echo "Output saved in '$PWD/Vol2_ImageInfo.txt' "; echo ; break;;
+            [Nn]* )  echo ' >> Starting with ImageInfo (Using Volatility 2) ...'; echo ; $volatility2 imageinfo; echo ; break;;
+            [Qq]* ) echo ; break;;
+            * )  echo ; echo ' >> Please answer yes or no ...';;
+        esac
+    done
+}
+
+ImageInfo_vol3() {
+
+        while true; do
+        read -p ' >> Do you want to store the Output? [ Y/n/(q)uit ] ' yn
+        case $yn in
+            [Yy]* )  echo ' >> Starting with ImageInfo (Using Volatility 3) ...'; echo ; $volatility windows.info > Vol3_ImageInfo.txt; echo ; echo "Output saved in '$PWD/Vol3_ImageInfo.txt' "; echo ; break;;
+            [Nn]* )  echo ' >> Starting with ImageInfo (Using Volatility 3) ...'; echo ; $volatility windows.info; echo ; break;;
+            [Qq]* ) echo ; break;;
+            * )  echo ; echo ' >> Please answer yes or no ...';;
+        esac
+    done
+}
+
 ImageInfo() {
 
     echo '###############################################################################' | lolcat
     echo 
     while true; do
-        read -p ' >> Do you want to store the Output? [ Y/n/(q)uit ] ' yn
-        case $yn in
-            [Yy]* )  echo ' >> Starting with ImageInfo (Only Required for Volatility 2) ...'; echo ; $volatility2 imageinfo > Vol2_ImageInfo.txt; echo ; echo "Output saved in '$PWD/Vol2_ImageInfo.txt' "; echo ; break;;
-            [Nn]* )  echo ' >> Starting with ImageInfo (Only Required for Volatility 2) ...'; echo ; $volatility2 imageinfo; echo ; break;;
-            [Qq]* ) echo ; break;;
-            * )  echo ; echo ' >> Please answer yes or no ...';;
+        read -p ' >> Proceed with Volatility 2 (slow) or Volatility 3 (fast) ? [ 2/3 ] ' v
+        case $v in
+            2)  ImageInfo_vol2 ; break;;
+            3)  ImageInfo_vol3 ; break;;
+            * )  echo ; echo ' >> Please answer Volatility (2) or (3) ...';;
         esac
     done
     
