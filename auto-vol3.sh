@@ -508,6 +508,26 @@ ModScan() {
 # done
 # echo
 
+LsaDump() {
+
+    echo '###############################################################################' | lolcat
+    echo 
+    while true; do
+        read -p ' >> Do you want to store the Output? [ Y/n/(q)uit ] ' yn
+        case $yn in
+            [Yy]* )  echo ' >> Starting with LsaDump ...'; echo ; $volatility windows.lsadump > LsaDump.txt; echo ; echo "Output saved in '$PWD/LsaDump.txt' "; echo ; break;;
+            [Nn]* )  echo ' >> Starting with LsaDump ...'; echo ; $volatility windows.lsadump; echo ; break;;
+            [Qq]* ) echo ; break;;
+            * )  echo ; echo ' >> Please answer yes or no ...';;
+        esac
+    done
+
+    # echo ' >> Starting with LsaDump ...'
+    # echo 
+    # $volatility $render_pretty windows.lsadump
+    # echo 
+}
+
 FileScan() {
 
     echo '###############################################################################' | lolcat
