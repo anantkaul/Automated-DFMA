@@ -395,8 +395,8 @@ RegistryUserAssist() {
     while true; do
         read -p ' >> Do you want to store the Output? [ Y/n/(q)uit ] ' yn
         case $yn in
-            [Yy]* )  echo ' >> Starting with Registry UserAssist ...'; echo ; $volatility windows.registry.userassist | grep $read_userassist > RegistryUserAssist.txt; echo ; echo "Output saved in '$PWD/RegistryUserAssist.txt' "; echo ; break;;
-            [Nn]* )  echo ' >> Starting with Registry UserAssist ...'; echo ; $volatility windows.registry.userassist | grep $read_userassist; echo ; break;;
+            [Yy]* )  echo ' >> Starting with Registry UserAssist ...'; echo ; $volatility windows.registry.userassist | egrep '$read_userassist' > RegistryUserAssist.txt; echo ; echo "Output saved in '$PWD/RegistryUserAssist.txt' "; echo ; break;;
+            [Nn]* )  echo ' >> Starting with Registry UserAssist ...'; echo ; $volatility windows.registry.userassist | egrep '$read_userassist' ; echo ; break;;
             [Qq]* ) echo ; break;;
             * )  echo ; echo ' >> Please answer yes or no ...';;
         esac
