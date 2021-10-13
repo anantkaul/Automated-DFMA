@@ -655,7 +655,7 @@ MemDump() {
 
     echo '###############################################################################' | lolcat
     echo 
-    read -p 'Which PID you want to dump out? : ' read_dump 
+    read -p ' >> Which PID you want to dump out? : ' read_dump 
     echo 
     echo ' >> Dumping out the Required Process (dmp) ...'
     echo 
@@ -678,15 +678,14 @@ ProcDump() {
 
     echo '###############################################################################' | lolcat
     echo 
-    read -p 'Which PID you want to dump out? : ' read_procdump 
-    echo
+    read -p ' >> Which PID you want to dump out? : ' read_procdump 
     read -p ' >> Which ImageProfile you want to use? : ' image_profile 
     echo 
     echo ' >> Finally Dumping out the Required Executable (exe) ...'
     echo 
     $volatility2 --profile $image_profile procdump -p $read_procdump -D .
     echo 
-    echo "Output saved in '$PWD/pid.*.exe' "
+    echo "Output saved in '$PWD/executable.*.exe' "
     # echo Output saved in $PWD/cmdline.csv 
     # echo 
 }
