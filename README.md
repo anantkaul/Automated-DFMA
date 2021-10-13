@@ -9,5 +9,8 @@ git clone https://github.com/anantkaul/Automated-Volatility3.git
 ./install.sh
 ```
 
-### Sample Token Error & Resolution !!
+### Sample Error & Resolution !!
 <img src="images/error.png">
+
+### Driven Menu for Volatility Plugins !!
+<img src="images/menu-driven.png">
