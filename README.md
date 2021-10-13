@@ -8,3 +8,6 @@ Volatility2 helps out when no availability of plugins in Volatility3 ...
 git clone https://github.com/anantkaul/Automated-Volatility3.git
 ./install.sh
 ```
+
+### Sample Token Error & Resolution !!
+<img src="images/error.png">
