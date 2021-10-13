@@ -705,7 +705,7 @@ while true; do
     echo "        6   ->  DllList                           17  ->  SvcScan"       
     echo "        7   ->  Handles                           18  ->  CmdLine"
     echo "        8   ->  GetSIDs                           19  ->  MalFind"
-    echo "        9   ->  Registry HiveList                 20  ->  MemDump  (.dmp)"
+    echo "        9   ->  Registry HiveList                 20  ->  MemDump (.dmp)"
     echo "        10  ->  Registry HiveScan                 21  ->  ProcDump (.exe)"
     echo "        11  ->  Registry UserAssist               99  ->  Exit"
     echo 
