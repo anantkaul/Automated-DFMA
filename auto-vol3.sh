@@ -659,7 +659,7 @@ MemDump() {
     echo 
     echo ' >> Dumping out the Required Process (dmp) ...'
     echo 
-    $volatility windows.pslist --dump --pid $read_dump
+    $volatility windows.pslist --pid $read_dump --dump
     echo 
     echo " >> Output saved in '$PWD/pid.*.dmp' "
     echo 
