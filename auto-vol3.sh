@@ -687,7 +687,7 @@ ProcDump() {
     echo 
     echo " >> Output saved in '$PWD/executable.*.exe' "
     # echo  >> Output saved in $PWD/cmdline.csv 
-    # echo 
+    echo 
 }
 
 # figlet -f Digital 'SPECIAL THANKS TO THE CREATORS -- ©'
