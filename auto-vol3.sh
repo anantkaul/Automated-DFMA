@@ -7,7 +7,7 @@ echo '     #################################################################### 
 echo
 figlet -f miniwi '         Volatility Framework' | lolcat
 figlet -f miniwi '  Exclusively Automated by Anant Kaul' | lolcat
-# echo 
+echo 
 # eval $hashes
 
 good_bye() {
@@ -439,7 +439,6 @@ ProcDump() {
     echo 
 }
 
-echo 
 while true; do
     echo '############################################################################### ' | lolcat
     echo 
