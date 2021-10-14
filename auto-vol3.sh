@@ -6,64 +6,95 @@ figlet -f miniwi '     Welcome to Memory Forensics' | lolcat
 echo '     #################################################################### ' | lolcat
 echo
 figlet -f miniwi '         Volatility Framework' | lolcat
-# echo
-# figlet -f miniwi '      Exclusively Automated by Anant Kaul' | lolcat
 figlet -f miniwi '  Exclusively Automated by Anant Kaul' | lolcat
 # echo 
-# echo ' ################################################################################## ' | lolcat
+# eval $hashes
 
 good_bye() {
 
-    ## Good Bye
-    echo 
-    echo '###############################################################################' | lolcat
+    echo
+    eval $hashes 
     echo 
     echo " >> Now you're finished with your Memory Forensics Investigation !!"
     echo ' >> Please move on with other needed Investigations ...'
     echo ' >> Suggestions Already Given by Volatility !!'
-    echo " >> Do copy '$PWD' for Further Investigations ..."
-    echo " >> Outputs will be overwritten next time if not copied !!"
+    echo " >> Do check '$DIR' for Further Investigations ..."
+    # echo " >> Outputs will be overwritten next time if not copied !!"
     echo
     figlet -f Digital '        SPECIAL THANKS TO THE CREATORS' | lolcat
     echo
     figlet -f Kban 'Anant Kaul' | lolcat
     figlet -f Kban '        AND' | lolcat
     figlet -f Kban '  Volatility' | lolcat
-    cd ..
+    # figlet -f Digital 'SPECIAL THANKS TO THE CREATORS -- ©'
     exit
 }
 
 # echo
 # read -p " >> Enter Full Path of Memory File: " path_to_file
 
+hashes="echo '###############################################################################' | lolcat"
+
 if [ -z "$1" ]; then
     echo
-    echo ' ############################################################################# ' | lolcat
+    eval $hashes
     echo 
     echo " >> ERROR: Please Enter Full Path of Memory File as argument."
     exit
 fi
 
-# volatility2="vol.py -f $path_to_file"
 volatility2="vol.py -f $1"
 volatility="vol -f $1"
 render_pretty='-r pretty'
 render_csv='-r csv'
 
-DIR=$PWD/Investigate
-if [ ! -d "$DIR" ]; then
-    mkdir $DIR
-fi
-# mkdir out
-cd $DIR
+location=$PWD
+DIR=$location/Investigations
+created=false
+
+## Sample Loop
+# while true; do
+#     read -p ' >> Do you wish to continue? ( Y/n ) ' yn
+#     case $yn in
+#         [Yy]* ) break;;
+#         [Nn]* ) good_bye;;
+#         * )  echo ; echo ' >> Please answer yes or no ...';;
+#     esac
+# done
+
+create_dir() {
+
+    if [ ! -d "$DIR" ]; then
+        mkdir $DIR
+    fi    
+
+    counter=1
+    while true; do
+        if [ ! -d "$DIR/$counter" ]; then
+            DIR=$DIR/$counter 
+            mkdir $DIR
+            # cd $DIR
+            break  
+        fi        
+        (( counter++ ))
+    done
+    created=true
+}
+
+check_dir() {
+     if [[ "$created" == false ]]; then 
+        create_dir
+    fi
+    cd $DIR
+}
 
 ImageInfo_vol2() {
 
-        while true; do
+    while true; do
         read -p ' >> Do you want to store the Output? [ Y/n/(q)uit ] ' yn
         case $yn in
-            [Yy]* )  echo ' >> Starting with ImageInfo (Using Volatility 2) ...'; echo ; $volatility2 imageinfo > Vol2_ImageInfo.txt; echo ; echo " >> Output saved in '$PWD/Vol2_ImageInfo.txt' "; echo ; break;;
-            [Nn]* )  echo ' >> Starting with ImageInfo (Using Volatility 2) ...'; echo ; $volatility2 imageinfo; echo ; break;;
+            [Yy]* ) check_dir; echo ' >> Starting with ImageInfo (Using Volatility 2) ...'; echo ; $volatility2 imageinfo > Vol2_ImageInfo.txt; echo ; echo " >> Output saved in '$PWD/Vol2_ImageInfo.txt' "; echo ; cd $location; break;;
+            [Nn]* ) echo ' >> Starting with ImageInfo (Using Volatility 2) ...'; echo ; $volatility2 imageinfo; echo ; break;;
             [Qq]* ) echo ; break;;
             * )  echo ; echo ' >> Please answer yes or no ...';;
         esac
@@ -72,11 +103,11 @@ ImageInfo_vol2() {
 
 ImageInfo_vol3() {
 
-        while true; do
+    while true; do
         read -p ' >> Do you want to store the Output? [ Y/n/(q)uit ] ' yn
         case $yn in
-            [Yy]* )  echo ' >> Starting with ImageInfo (Using Volatility 3) ...'; echo ; $volatility windows.info > Vol3_ImageInfo.txt; echo ; echo " >> Output saved in '$PWD/Vol3_ImageInfo.txt' "; echo ; break;;
-            [Nn]* )  echo ' >> Starting with ImageInfo (Using Volatility 3) ...'; echo ; $volatility windows.info; echo ; break;;
+            [Yy]* ) check_dir; echo ' >> Starting with ImageInfo (Using Volatility 3) ...'; echo ; $volatility windows.info > Vol3_ImageInfo.txt; echo ; echo " >> Output saved in '$PWD/Vol3_ImageInfo.txt' "; echo ; cd $location; break;;
+            [Nn]* ) echo ' >> Starting with ImageInfo (Using Volatility 3) ...'; echo ; $volatility windows.info; echo ; break;;
             [Qq]* ) echo ; break;;
             * )  echo ; echo ' >> Please answer yes or no ...';;
         esac
@@ -85,7 +116,7 @@ ImageInfo_vol3() {
 
 ImageInfo() {
 
-    echo '###############################################################################' | lolcat
+    eval $hashes
     echo 
     while true; do
         read -p ' >> Proceed with Volatility 2 (slow) or Volatility 3 (fast) ? [ 2/3 ] ' v
@@ -95,603 +126,318 @@ ImageInfo() {
             * )  echo ; echo ' >> Please answer Volatility (2) or (3) ...';;
         esac
     done
-    
-    # echo ' >> Starting with ImageInfo (Only Required for Volatility 2) ...'
-    # echo 
-    # # echo "$volatility2 imageinfo > vol2_image_profile.txt"
-    # $volatility2 imageinfo > vol2_image_profile.txt
-    # echo 
-    # echo " >> Output saved in '$PWD/vol2_image_profile.txt' "
-    # echo 
 }
-# while true; do
-#     read -p ' >> Do you wish to continue? ( Y/n ) ' yn
-#     case $yn in
-#         [Yy]* ) break;;
-#         [Nn]* ) good_bye;;
-#         * )  echo ; echo ' >> Please answer yes or no ...';;
-#     esac
-# done
-# echo
 
 PsList() {
 
-    echo '###############################################################################' | lolcat
+    eval $hashes
     echo 
     while true; do
         read -p ' >> Do you want to store the Output? [ Y/n/(q)uit ] ' yn
         case $yn in
-            [Yy]* )  echo ' >> Starting with PsList ...'; echo ; $volatility $render_csv windows.pslist > PsList.csv; echo ; echo " >> Output saved in '$PWD/PsList.csv' "; echo ; break;;
-            [Nn]* )  echo ' >> Starting with PsList ...'; echo ; $volatility $render_pretty windows.pslist; echo ; break;;
+            [Yy]* ) check_dir; echo ' >> Starting with PsList ...'; echo ; $volatility $render_csv windows.pslist > PsList.csv; echo ; echo " >> Output saved in '$PWD/PsList.csv' "; echo ; cd $location; break;;
+            [Nn]* ) echo ' >> Starting with PsList ...'; echo ; $volatility $render_pretty windows.pslist; echo ; break;;
             [Qq]* ) echo ; break;;
             * )  echo ; echo ' >> Please answer yes or no ...';;
         esac
     done
-    
-    # echo ' >> Starting with PsList ...'
-    # echo 
-    # $volatility $render_pretty windows.pslist
-    # echo 
 }
-# while true; do
-#     read -p ' >> Do you wish to continue? ( Y/n ) ' yn
-#     case $yn in
-#         [Yy]* ) break;;
-#         [Nn]* ) good_bye;;
-#         * )  echo ; echo ' >> Please answer yes or no ...';;
-#     esac
-# done
-# echo
 
 PsTree() {
 
-    echo '###############################################################################' | lolcat
+    eval $hashes
     echo 
     while true; do
         read -p ' >> Do you want to store the Output? [ Y/n/(q)uit ] ' yn
         case $yn in
-            [Yy]* )  echo ' >> Starting with PsTree ...'; echo ; $volatility $render_csv windows.pstree > PsTree.csv; echo ; echo " >> Output saved in '$PWD/PsTree.csv' "; echo ; break;;
-            [Nn]* )  echo ' >> Starting with PsTree ...'; echo ; $volatility $render_pretty windows.pstree; echo ; break;;
+            [Yy]* ) check_dir; echo ' >> Starting with PsTree ...'; echo ; $volatility $render_csv windows.pstree > PsTree.csv; echo ; echo " >> Output saved in '$PWD/PsTree.csv' "; echo ; cd $location; break;;
+            [Nn]* ) echo ' >> Starting with PsTree ...'; echo ; $volatility $render_pretty windows.pstree; echo ; break;;
             [Qq]* ) echo ; break;;
             * )  echo ; echo ' >> Please answer yes or no ...';;
         esac
     done
-
-    # echo ' >> Starting with PsTree ...'
-    # echo 
-    # $volatility $render_pretty windows.pstree
-    # echo 
 }
-# while true; do
-#     read -p ' >> Do you wish to continue? ( Y/n ) ' yn
-#     case $yn in
-#         [Yy]* ) break;;
-#         [Nn]* ) good_bye;;
-#         * )  echo ; echo ' >> Please answer yes or no ...';;
-#     esac
-# done
-# echo
 
 PsScan() {
 
-    echo '###############################################################################' | lolcat
+    eval $hashes
     echo 
     while true; do
         read -p ' >> Do you want to store the Output? [ Y/n/(q)uit ] ' yn
         case $yn in
-            [Yy]* )  echo ' >> Starting with PsScan ...'; echo ; $volatility $render_csv windows.psscan > PsScan.csv; echo ; echo " >> Output saved in '$PWD/PsScan.csv' "; echo ; break;;
-            [Nn]* )  echo ' >> Starting with PsScan ...'; echo ; $volatility $render_pretty windows.psscan; echo ; break;;
+            [Yy]* ) check_dir; echo ' >> Starting with PsScan ...'; echo ; $volatility $render_csv windows.psscan > PsScan.csv; echo ; echo " >> Output saved in '$PWD/PsScan.csv' "; echo ; cd $location; break;;
+            [Nn]* ) echo ' >> Starting with PsScan ...'; echo ; $volatility $render_pretty windows.psscan; echo ; break;;
             [Qq]* ) echo ; break;;
             * )  echo ; echo ' >> Please answer yes or no ...';;
         esac
     done
-
-    # echo ' >> Starting with PsScan ...'
-    # echo 
-    # $volatility $render_pretty windows.psscan
-    # echo 
 }
-# while true; do
-#     read -p ' >> Do you wish to continue? ( Y/n ) ' yn
-#     case $yn in
-#         [Yy]* ) break;;
-#         [Nn]* ) good_bye;;
-#         * )  echo ; echo ' >> Please answer yes or no ...';;
-#     esac
-# done
-# echo
 
 NetScan() {
 
-    echo '###############################################################################' | lolcat
+    eval $hashes
     echo 
     while true; do
         read -p ' >> Do you want to store the Output? [ Y/n/(q)uit ] ' yn
         case $yn in
-            [Yy]* )  echo ' >> Starting with NetScan ...'; echo ; $volatility $render_csv windows.netscan > NetScan.csv; echo ; echo " >> Output saved in '$PWD/NetScan.csv' "; echo ; break;;
-            [Nn]* )  echo ' >> Starting with NetScan ...'; echo ; $volatility $render_pretty windows.netscan; echo ; break;;
+            [Yy]* ) check_dir; echo ' >> Starting with NetScan ...'; echo ; $volatility $render_csv windows.netscan > NetScan.csv; echo ; echo " >> Output saved in '$PWD/NetScan.csv' "; echo ; cd $location; break;;
+            [Nn]* ) echo ' >> Starting with NetScan ...'; echo ; $volatility $render_pretty windows.netscan; echo ; break;;
             [Qq]* ) echo ; break;;
             * )  echo ; echo ' >> Please answer yes or no ...';;
         esac
     done
-
-    # echo ' >> Starting with NetScan ...'
-    # echo 
-    # $volatility $render_pretty windows.netscan > netscan.csv
-    # echo 
-    # echo " >> Output saved in '$PWD/netscan.csv' "
-    # echo 
 }
-# while true; do
-#     read -p ' >> Do you wish to continue? ( Y/n ) ' yn
-#     case $yn in
-#         [Yy]* ) break;;
-#         [Nn]* ) good_bye;;
-#         * )  echo ; echo ' >> Please answer yes or no ...';;
-#     esac
-# done
-# echo
 
 DllList() {
 
-    echo '###############################################################################' | lolcat
+    eval $hashes
     echo 
     read -p 'Which PID you want? : ' read_dll
     echo 
     while true; do
         read -p ' >> Do you want to store the Output? [ Y/n/(q)uit ] ' yn
         case $yn in
-            [Yy]* )  echo ' >> Starting with DllList ...'; echo ; $volatility $render_csv windows.dlllist --pid $read_dll > DllList.csv; echo ; echo " >> Output saved in '$PWD/DllList.csv' "; echo ; break;;
-            [Nn]* )  echo ' >> Starting with DllList ...'; echo ; $volatility $render_pretty windows.dlllist --pid $read_dll; echo ; break;;
+            [Yy]* ) check_dir; echo ' >> Starting with DllList ...'; echo ; $volatility $render_csv windows.dlllist --pid $read_dll > DllList.csv; echo ; echo " >> Output saved in '$PWD/DllList.csv' "; echo ; cd $location; break;;
+            [Nn]* ) echo ' >> Starting with DllList ...'; echo ; $volatility $render_pretty windows.dlllist --pid $read_dll; echo ; break;;
             [Qq]* ) echo ; break;;
             * )  echo ; echo ' >> Please answer yes or no ...';;
         esac
     done
-
-    # echo ' >> Starting with DllList ...'
-    # echo 
-    # read -p 'Which PID you want? : ' read_dll
-    # $volatility $render_pretty windows.dlllist --pid $read_dll
-    # echo 
 }
-# while true; do
-#     read -p ' >> Do you wish to continue? ( Y/n ) ' yn
-#     case $yn in
-#         [Yy]* ) break;;
-#         [Nn]* ) good_bye;;
-#         * )  echo ; echo ' >> Please answer yes or no ...';;
-#     esac
-# done
-# echo
 
 Handles() {
 
-    echo '###############################################################################' | lolcat
+    eval $hashes
     echo 
     read -p 'Which PID you want? : ' read_handles
     echo 
     while true; do
         read -p ' >> Do you want to store the Output? [ Y/n/(q)uit ] ' yn
         case $yn in
-            [Yy]* )  echo ' >> Starting with Handles ...'; echo ; $volatility $render_csv windows.handles --pid $read_handles > Handles.csv; echo ; echo " >> Output saved in '$PWD/Handles.csv' "; echo ; break;;
-            [Nn]* )  echo ' >> Starting with Handles ...'; echo ; $volatility $render_pretty windows.handles --pid $read_handles; echo ; break;;
+            [Yy]* ) check_dir; echo ' >> Starting with Handles ...'; echo ; $volatility $render_csv windows.handles --pid $read_handles > Handles.csv; echo ; echo " >> Output saved in '$PWD/Handles.csv' "; echo ; cd $location; break;;
+            [Nn]* ) echo ' >> Starting with Handles ...'; echo ; $volatility $render_pretty windows.handles --pid $read_handles; echo ; break;;
             [Qq]* ) echo ; break;;
             * )  echo ; echo ' >> Please answer yes or no ...';;
         esac
     done
-
-    # echo ' >> Starting with Handles ...'
-    # echo 
-    # read -p 'Which PID you want? : ' read_handles
-    # echo 
-    # $volatility $render_pretty windows.handles --pid $read_handles
-    # echo 
 }
-# while true; do
-#     read -p ' >> Do you wish to continue? ( Y/n ) ' yn
-#     case $yn in
-#         [Yy]* ) break;;
-#         [Nn]* ) good_bye;;
-#         * )  echo ; echo ' >> Please answer yes or no ...';;
-#     esac
-# done
-# echo
 
 GetSIDs() {
 
-    echo '###############################################################################' | lolcat
+    eval $hashes
     echo 
     read -p 'Which PID you want? : ' read_sids
     echo 
     while true; do
         read -p ' >> Do you want to store the Output? [ Y/n/(q)uit ] ' yn
         case $yn in
-            [Yy]* )  echo ' >> Starting with GetSIDs ...'; echo ; $volatility $render_csv windows.getsids --pid $read_sids > GetSIDs.csv; echo ; echo " >> Output saved in '$PWD/GetSIDs.csv' "; echo ; break;;
-            [Nn]* )  echo ' >> Starting with GetSIDs ...'; echo ; $volatility $render_pretty windows.getsids --pid $read_sids; echo ; break;;
+            [Yy]* ) check_dir; echo ' >> Starting with GetSIDs ...'; echo ; $volatility $render_csv windows.getsids --pid $read_sids > GetSIDs.csv; echo ; echo " >> Output saved in '$PWD/GetSIDs.csv' "; echo ; cd $location; break;;
+            [Nn]* ) echo ' >> Starting with GetSIDs ...'; echo ; $volatility $render_pretty windows.getsids --pid $read_sids; echo ; break;;
             [Qq]* ) echo ; break;;
             * )  echo ; echo ' >> Please answer yes or no ...';;
         esac
     done
-
-    # echo ' >> Starting with GetSIDs ...'
-    # echo 
-    # read -p 'Which PID you want? : ' read_sids
-    # $volatility $render_pretty windows.getsids --pid $read_sids
-    # echo 
 }
-# while true; do
-#     read -p ' >> Do you wish to continue? ( Y/n ) ' yn
-#     case $yn in
-#         [Yy]* ) break;;
-#         [Nn]* ) good_bye;;
-#         * )  echo ; echo ' >> Please answer yes or no ...';;
-#     esac
-# done
-# echo
 
 RegistryHiveList() {
 
-    echo '###############################################################################' | lolcat
+    eval $hashes
     echo 
     while true; do
         read -p ' >> Do you want to store the Output? [ Y/n/(q)uit ] ' yn
         case $yn in
-            [Yy]* )  echo ' >> Starting with Registry HiveList (For Virtual Memory) ...'; echo ; $volatility $render_csv windows.registry.hivelist > RegistryHiveList.csv; echo ; echo " >> Output saved in '$PWD/RegistryHiveList.csv' "; echo ; break;;
-            [Nn]* )  echo ' >> Starting with Registry HiveList (For Virtual Memory) ...'; echo ; $volatility $render_pretty windows.registry.hivelist; echo ; break;;
+            [Yy]* ) check_dir; echo ' >> Starting with Registry HiveList (For Virtual Memory) ...'; echo ; $volatility $render_csv windows.registry.hivelist > RegistryHiveList.csv; echo ; echo " >> Output saved in '$PWD/RegistryHiveList.csv' "; echo ; cd $location; break;;
+            [Nn]* ) echo ' >> Starting with Registry HiveList (For Virtual Memory) ...'; echo ; $volatility $render_pretty windows.registry.hivelist; echo ; break;;
             [Qq]* ) echo ; break;;
             * )  echo ; echo ' >> Please answer yes or no ...';;
         esac
     done
-
-    # echo ' >> Starting with Registry HiveList (For Virtual Memory) ...'
-    # echo 
-    # $volatility windows.registry.hivelist
-    # echo 
 }
-# while true; do
-#     read -p ' >> Do you wish to continue? ( Y/n ) ' yn
-#     case $yn in
-#         [Yy]* ) break;;
-#         [Nn]* ) good_bye;;
-#         * )  echo ; echo ' >> Please answer yes or no ...';;
-#     esac
-# done
-# echo
 
 RegistryHiveScan() {
 
-    echo '###############################################################################' | lolcat
+    eval $hashes
     echo 
     while true; do
         read -p ' >> Do you want to store the Output? [ Y/n/(q)uit ] ' yn
         case $yn in
-            [Yy]* )  echo ' >> Starting with Registry HiveScan (For Physical Memory) ...'; echo ; $volatility $render_csv windows.registry.hivescan > RegistryHiveScan.csv; echo ; echo " >> Output saved in '$PWD/RegistryHiveScan.csv' "; echo ; break;;
-            [Nn]* )  echo ' >> Starting with Registry HiveScan (For Physical Memory) ...'; echo ; $volatility $render_pretty windows.registry.hivescan; echo ; break;;
+            [Yy]* ) check_dir; echo ' >> Starting with Registry HiveScan (For Physical Memory) ...'; echo ; $volatility $render_csv windows.registry.hivescan > RegistryHiveScan.csv; echo ; echo " >> Output saved in '$PWD/RegistryHiveScan.csv' "; echo ; cd $location; break;;
+            [Nn]* ) echo ' >> Starting with Registry HiveScan (For Physical Memory) ...'; echo ; $volatility $render_pretty windows.registry.hivescan; echo ; break;;
             [Qq]* ) echo ; break;;
             * )  echo ; echo ' >> Please answer yes or no ...';;
         esac
     done
-
-    # echo ' >> Starting with Registry HiveScan (For Physical Memory) ...'
-    # echo 
-    # $volatility windows.registry.hivescan
-    # echo 
 }
-# while true; do
-#     read -p ' >> Do you wish to continue? ( Y/n ) ' yn
-#     case $yn in
-#         [Yy]* ) break;;
-#         [Nn]* ) good_bye;;
-#         * )  echo ; echo ' >> Please answer yes or no ...';;
-#     esac
-# done
-# echo
 
 RegistryUserAssist() {
 
-    echo '###############################################################################' | lolcat
+    eval $hashes
     echo 
     read -p " >> Which Service/File you want? (Preferably Don't use Extention) : " read_userassist
     echo 
     while true; do
         read -p ' >> Do you want to store the Output? [ Y/n/(q)uit ] ' yn
         case $yn in
-            [Yy]* )  echo ' >> Starting with Registry UserAssist ...'; echo ; $volatility windows.registry.userassist | egrep "$read_userassist" > RegistryUserAssist.txt; echo ; echo " >> Output saved in '$PWD/RegistryUserAssist.txt' "; echo ; break;;
-            [Nn]* )  echo ' >> Starting with Registry UserAssist ...'; echo ; $volatility windows.registry.userassist | egrep "$read_userassist" ; echo ; break;;
+            [Yy]* ) check_dir; echo ' >> Starting with Registry UserAssist ...'; echo ; $volatility windows.registry.userassist | egrep "$read_userassist" > RegistryUserAssist.txt; echo ; echo " >> Output saved in '$PWD/RegistryUserAssist.txt' "; echo ; cd $location; break;;
+            [Nn]* ) echo ' >> Starting with Registry UserAssist ...'; echo ; $volatility windows.registry.userassist | egrep "$read_userassist" ; echo ; break;;
             [Qq]* ) echo ; break;;
             * )  echo ; echo ' >> Please answer yes or no ...';;
         esac
     done
-
-    # echo ' >> Starting with Registry UserAssist ...'
-    # echo 
-    # read -p " >> Which Service/File you want? (Preferably Don't use Extention) : " read_userassist
-    # echo 
-    # $volatility windows.registry.userassist | grep $read_userassist
-    # echo 
 }
-# while true; do
-#     read -p ' >> Do you wish to continue? ( Y/n ) ' yn
-#     case $yn in
-#         [Yy]* ) break;;
-#         [Nn]* ) good_bye;;
-#         * )  echo ; echo ' >> Please answer yes or no ...';;
-#     esac
-# done
-# echo
 
 TimeLiner() {
 
-    echo '###############################################################################' | lolcat
+    eval $hashes
     echo 
     while true; do
         read -p ' >> Do you want to store the Output? [ Y/n/(q)uit ] ' yn
         case $yn in
-            [Yy]* )  echo ' >> Starting with TimeLiner ...'; echo ; $volatility $render_csv timeliner > TimeLiner.csv; echo ; echo " >> Output saved in '$PWD/TimeLiner.csv' "; echo ; break;;
-            [Nn]* )  echo ' >> Starting with TimeLiner ...'; echo ; $volatility $render_pretty timeliner; echo ; break;;
+            [Yy]* ) check_dir; echo ' >> Starting with TimeLiner ...'; echo ; $volatility $render_csv timeliner > TimeLiner.csv; echo ; echo " >> Output saved in '$PWD/TimeLiner.csv' "; echo ; cd $location; break;;
+            [Nn]* ) echo ' >> Starting with TimeLiner ...'; echo ; $volatility $render_pretty timeliner; echo ; break;;
             [Qq]* ) echo ; break;;
             * )  echo ; echo ' >> Please answer yes or no ...';;
         esac
     done
-
-    # echo ' >> Starting with TimeLiner ...'
-    # echo 
-    # $volatility $render_csv timeliner > timeliner.csv 
-    # echo 
-    # echo " >> Output saved in '$PWD/timeliner.csv' "
-    # echo 
 }
-# while true; do
-#     read -p ' >> Do you wish to continue? ( Y/n ) ' yn
-#     case $yn in
-#         [Yy]* ) break;;
-#         [Nn]* ) good_bye;;
-#         * )  echo ; echo ' >> Please answer yes or no ...';;
-#     esac
-# done
-# echo
 
 HashDump() {
 
-    echo '###############################################################################' | lolcat
+    eval $hashes
     echo 
     while true; do
         read -p ' >> Do you want to store the Output? [ Y/n/(q)uit ] ' yn
         case $yn in
-            [Yy]* )  echo ' >> Starting with HashDump ...'; echo ; $volatility $render_csv windows.hashdump > HashDump.csv; echo ; echo " >> Output saved in '$PWD/HashDump.csv' "; echo ; break;;
-            [Nn]* )  echo ' >> Starting with HashDump ...'; echo ; $volatility $render_pretty windows.hashdump; echo ; break;;
+            [Yy]* ) check_dir; echo ' >> Starting with HashDump ...'; echo ; $volatility $render_csv windows.hashdump > HashDump.csv; echo ; echo " >> Output saved in '$PWD/HashDump.csv' "; echo ; cd $location; break;;
+            [Nn]* ) echo ' >> Starting with HashDump ...'; echo ; $volatility $render_pretty windows.hashdump; echo ; break;;
             [Qq]* ) echo ; break;;
             * )  echo ; echo ' >> Please answer yes or no ...';;
         esac
     done
-
-    # echo ' >> Starting with HashDump ...'
-    # echo 
-    # $volatility $render_pretty windows.hashdump
-    # echo 
 }
-# while true; do
-#     read -p ' >> Do you wish to continue? ( Y/n ) ' yn
-#     case $yn in
-#         [Yy]* ) break;;
-#         [Nn]* ) good_bye;;
-#         * )  echo ; echo ' >> Please answer yes or no ...';;
-#     esac
-# done
-# echo
 
 ModScan() {
 
-    echo '###############################################################################' | lolcat
+    eval $hashes
     echo 
     while true; do
         read -p ' >> Do you want to store the Output? [ Y/n/(q)uit ] ' yn
         case $yn in
-            [Yy]* )  echo ' >> Starting with ModScan ...'; echo ; $volatility $render_csv windows.modscan > ModScan.csv; echo ; echo " >> Output saved in '$PWD/ModScan.csv' "; echo ; break;;
-            [Nn]* )  echo ' >> Starting with ModScan ...'; echo ; $volatility $render_pretty windows.modscan; echo ; break;;
+            [Yy]* ) check_dir; echo ' >> Starting with ModScan ...'; echo ; $volatility $render_csv windows.modscan > ModScan.csv; echo ; echo " >> Output saved in '$PWD/ModScan.csv' "; echo ; cd $location; break;;
+            [Nn]* ) echo ' >> Starting with ModScan ...'; echo ; $volatility $render_pretty windows.modscan; echo ; break;;
             [Qq]* ) echo ; break;;
             * )  echo ; echo ' >> Please answer yes or no ...';;
         esac
     done
-
-    # echo ' >> Starting with ModScan ...'
-    # echo 
-    # $volatility $render_pretty windows.modscan
-    # echo 
 }
-# while true; do
-#     read -p ' >> Do you wish to continue? ( Y/n ) ' yn
-#     case $yn in
-#         [Yy]* ) break;;
-#         [Nn]* ) good_bye;;
-#         * )  echo ; echo ' >> Please answer yes or no ...';;
-#     esac
-# done
-# echo
 
 LsaDump() {
 
-    echo '###############################################################################' | lolcat
+    eval $hashes
     echo 
     while true; do
         read -p ' >> Do you want to store the Output? [ Y/n/(q)uit ] ' yn
         case $yn in
-            [Yy]* )  echo ' >> Starting with LsaDump ...'; echo ; $volatility windows.lsadump > LsaDump.txt; echo ; echo " >> Output saved in '$PWD/LsaDump.txt' "; echo ; break;;
-            [Nn]* )  echo ' >> Starting with LsaDump ...'; echo ; $volatility windows.lsadump; echo ; break;;
+            [Yy]* ) check_dir; echo ' >> Starting with LsaDump ...'; echo ; $volatility windows.lsadump > LsaDump.txt; echo ; echo " >> Output saved in '$PWD/LsaDump.txt' "; echo ; cd $location; break;;
+            [Nn]* ) echo ' >> Starting with LsaDump ...'; echo ; $volatility windows.lsadump; echo ; break;;
             [Qq]* ) echo ; break;;
             * )  echo ; echo ' >> Please answer yes or no ...';;
         esac
     done
-
-    # echo ' >> Starting with LsaDump ...'
-    # echo 
-    # $volatility $render_pretty windows.lsadump
-    # echo 
 }
 
 FileScan() {
 
-    echo '###############################################################################' | lolcat
+    eval $hashes
     echo 
     while true; do
         read -p ' >> Do you want to store the Output? [ Y/n/(q)uit ] ' yn
         case $yn in
-            [Yy]* )  echo ' >> Starting with FileScan ...'; echo ; $volatility $render_csv windows.filescan > FileScan.csv; echo ; echo " >> Output saved in '$PWD/FileScan.csv' "; echo ; break;;
-            [Nn]* )  echo ' >> Starting with FileScan ...'; echo ; $volatility $render_pretty windows.filescan; echo ; break;;
+            [Yy]* ) check_dir; echo ' >> Starting with FileScan ...'; echo ; $volatility $render_csv windows.filescan > FileScan.csv; echo ; echo " >> Output saved in '$PWD/FileScan.csv' "; echo ; cd $location; break;;
+            [Nn]* ) echo ' >> Starting with FileScan ...'; echo ; $volatility $render_pretty windows.filescan; echo ; break;;
             [Qq]* ) echo ; break;;
             * )  echo ; echo ' >> Please answer yes or no ...';;
         esac
     done
-
-    # echo ' >> Starting with FileScan (For File Listing) ...'
-    # echo 
-    # $volatility $render_csv windows.filescan > filescan.csv
-    # echo 
-    # echo " >> Output saved in '$PWD/filescan.csv' "
-    # echo 
 }
-# while true; do
-#     read -p ' >> Do you wish to continue? ( Y/n ) ' yn
-#     case $yn in
-#         [Yy]* ) break;;
-#         [Nn]* ) good_bye;;
-#         * )  echo ; echo ' >> Please answer yes or no ...';;
-#     esac
-# done
-# echo
 
 SvcScan() {
 
-    echo '###############################################################################' | lolcat
+    eval $hashes
     echo 
     while true; do
         read -p ' >> Do you want to store the Output? [ Y/n/(q)uit ] ' yn
         case $yn in
-            [Yy]* )  echo ' >> Starting with SvcScan ...'; echo ; $volatility $render_csv windows.svcscan > SvcScan.csv; echo ; echo " >> Output saved in '$PWD/SvcScan.csv' "; echo ; break;;
-            [Nn]* )  echo ' >> Starting with SvcScan ...'; echo ; $volatility $render_pretty windows.svcscan; echo ; break;;
+            [Yy]* ) check_dir; echo ' >> Starting with SvcScan ...'; echo ; $volatility $render_csv windows.svcscan > SvcScan.csv; echo ; echo " >> Output saved in '$PWD/SvcScan.csv' "; echo ; cd $location; break;;
+            [Nn]* ) echo ' >> Starting with SvcScan ...'; echo ; $volatility $render_pretty windows.svcscan; echo ; break;;
             [Qq]* ) echo ; break;;
             * )  echo ; echo ' >> Please answer yes or no ...';;
         esac
     done
-
-    # echo ' >> Starting with SvcScan ...'
-    # echo 
-    # $volatility $render_csv windows.svcscan > svcscan.csv
-    # echo 
-    # echo " >> Output saved in '$PWD/svcscan.csv' "
-    # echo 
 }
-# while true; do
-#     read -p ' >> Do you wish to continue? ( Y/n ) ' yn
-#     case $yn in
-#         [Yy]* ) break;;
-#         [Nn]* ) good_bye;;
-#         * )  echo ; echo ' >> Please answer yes or no ...';;
-#     esac
-# done
-# echo
 
 CmdLine() {
 
-    echo '##############################################################################' | lolcat
+    eval $hashes
     echo 
     while true; do
         read -p ' >> Do you want to store the Output? [ Y/n/(q)uit ] ' yn
         case $yn in
-            [Yy]* )  echo ' >> Starting with CmdLine ...'; echo ; $volatility $render_csv windows.cmdline > CmdLine.csv; echo ; echo " >> Output saved in '$PWD/CmdLine.csv' "; echo ; break;;
-            [Nn]* )  echo ' >> Starting with CmdLine ...'; echo ; $volatility $render_pretty windows.cmdline; echo ; break;;
+            [Yy]* ) check_dir; echo ' >> Starting with CmdLine ...'; echo ; $volatility $render_csv windows.cmdline > CmdLine.csv; echo ; echo " >> Output saved in '$PWD/CmdLine.csv' "; echo ; cd $location; break;;
+            [Nn]* ) echo ' >> Starting with CmdLine ...'; echo ; $volatility $render_pretty windows.cmdline; echo ; break;;
             [Qq]* ) echo ; break;;
             * )  echo ; echo ' >> Please answer yes or no ...';;
         esac
     done
-
-    # echo ' >> Starting with CmdLine ...'
-    # echo 
-    # $volatility $render_csv windows.cmdline > cmdline.csv
-    # echo 
-    # echo " >> Output saved in '$PWD/cmdline.csv' "
-    # echo 
 }
-# while true; do
-#     read -p ' >> Do you wish to continue? ( Y/n ) ' yn
-#     case $yn in
-#         [Yy]* ) break;;
-#         [Nn]* ) good_bye;;
-#         * )  echo ; echo ' >> Please answer yes or no ...';;
-#     esac
-# done
-# echo
 
 MalFind() {
 
-    echo '###############################################################################' | lolcat
+    eval $hashes
     echo 
     while true; do
         read -p ' >> Do you want to store the Output? [ Y/n/(q)uit ] ' yn
         case $yn in
-            [Yy]* )  echo ' >> Starting with MalFind ...'; echo ' >> These can be Malicious (As suggested by Volatility Framework)' ; echo ; $volatility windows.malfind > MalFind.txt; echo ; echo " >> Output saved in '$PWD/MalFind.txt' "; echo ; break;;
-            [Nn]* )  echo ' >> Starting with MalFind ...'; echo ' >> These can be Malicious (As suggested by Volatility Framework)' ; echo ; $volatility windows.malfind; echo ; break;;
+            [Yy]* ) check_dir; echo ' >> Starting with MalFind ...'; echo ' >> These can be Malicious (As suggested by Volatility Framework)' ; echo ' >> Looks Suspicious ...'; echo ; $volatility windows.malfind > MalFind.txt; echo ; echo " >> Output saved in '$PWD/MalFind.txt' "; echo ; cd $location; break;;
+            [Nn]* ) echo ' >> Starting with MalFind ...'; echo ' >> These can be Malicious (As suggested by Volatility Framework)' ; echo ' >> Looks Suspicious ...'; echo ; $volatility windows.malfind; echo ; break;;
             [Qq]* ) echo ; break;;
             * )  echo ; echo ' >> Please answer yes or no ...';;
         esac
     done
-
-    # echo ' >> Starting with MalFind ...'
-    # echo ' >> These can be Malicious (As suggested by Volatility Framework)'
-    # echo 
-    # $volatility windows.malfind
-    # echo 
 }
-# while true; do
-#     read -p ' >> Do you wish to continue? ( Y/n ) ' yn
-#     case $yn in
-#         [Yy]* ) break;;
-#         [Nn]* ) good_bye;;
-#         * )  echo ; echo ' >> Please answer yes or no ...';;
-#     esac
-# done
-# echo
 
 MemDump() {
 
-    echo '###############################################################################' | lolcat
+    eval $hashes
     echo 
     read -p ' >> Which PID you want to dump out? : ' read_dump 
     echo 
     echo ' >> Dumping out the Required Process (dmp) ...'
     echo 
+    check_dir
     $volatility $render_pretty windows.pslist --pid $read_dump --dump
     echo 
     echo " >> Output saved in '$PWD/pid.*.dmp' "
+    cd $location
     echo 
 }
-# while true; do
-#     read -p ' >> Do you wish to continue? ( Y/n ) ' yn
-#     case $yn in
-#         [Yy]* ) break;;
-#         [Nn]* ) good_bye;;
-#         * )  echo ; echo ' >> Please answer yes or no ...';;
-#     esac
-# done
-# echo
 
 ProcDump() {
 
-    echo '###############################################################################' | lolcat
+    eval $hashes
     echo 
     read -p ' >> Which PID you want to dump out? : ' read_procdump 
     read -p ' >> Which ImageProfile you want to use? : ' image_profile 
     echo 
     echo ' >> Dumping out the Required Executable (exe) ...'
     echo 
+    check_dir
     $volatility2 --profile $image_profile procdump -p $read_procdump -D .
     echo 
     echo " >> Output saved in '$PWD/executable.*.exe' "
-    # echo  >> Output saved in $PWD/cmdline.csv 
+    cd $location
     echo 
 }
-
-# figlet -f Digital 'SPECIAL THANKS TO THE CREATORS -- ©'
 
 echo 
 while true; do
