@@ -21,7 +21,8 @@ good_bye() {
     echo " >> Now you're finished with your Memory Forensics Investigation !!"
     echo ' >> Please move on with other needed Investigations ...'
     echo ' >> Suggestions Already Given by Volatility !!'
-    echo " >> Do check '$PWD' for Further Investigations ..."
+    echo " >> Do copy '$PWD' for Further Investigations ..."
+    echo " >> Outputs will be overwritten next time if not copied !!"
     echo
     figlet -f Digital '        SPECIAL THANKS TO THE CREATORS' | lolcat
     echo
