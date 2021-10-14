@@ -13,7 +13,7 @@ git clone https://github.com/anantkaul/Automated-Volatility3.git
 <img src="images/error.png">
 
 ### Driven Menu for Volatility Plugins !!
-<img src="images/menu-driven.png">
+<img src="images/menu_driven.png">
 
 ### Happy Ending !!
 <img src="images/good_bye.png">
