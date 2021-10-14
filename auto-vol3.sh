@@ -40,7 +40,7 @@ if [ -z "$1" ]; then
     echo
     echo ' ############################################################################# ' | lolcat
     echo 
-    echo " >> ERROR: Please Enter Full Path of Memory File as argument"
+    echo " >> ERROR: Please Enter Full Path of Memory File as argument."
     exit
 fi
 
