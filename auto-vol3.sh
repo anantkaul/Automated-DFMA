@@ -721,7 +721,7 @@ while true; do
         9) echo ; RegistryHiveList;;
         10) echo ; RegistryHiveScan;;
         11) echo ; RegistryUserAssist;;
-        12) echo ; Timeliner;;
+        12) echo ; TimeLiner;;
         13) echo ; HashDump;;
         14) echo ; LsaDump;;
         15) echo ; ModScan;;
