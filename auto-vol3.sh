@@ -17,7 +17,7 @@ good_bye() {
     echo 
     echo " >> Now you're finished with your Memory Forensics Investigation !!"
     echo ' >> Please move on with other needed Investigations ...'
-    echo ' >> Suggestions Already Given by Volatility !!'
+    echo ' >> Suggestions Already Given by "The Volatility Framework" !!'
     echo " >> Do check '$DIR' for Further Investigations ..."
     # echo " >> Outputs will be overwritten next time if not copied !!"
     echo
