@@ -43,8 +43,8 @@ if [ -z "$1" ]; then
     exit
 fi
 
-volatility2="vol.py -f $1"
-volatility="vol -f $1"
+volatility2="volatility/vol.py -f $1"
+volatility="volatility3/vol.py -f $1"
 render_pretty='-r pretty'
 render_csv='-r csv'
 
