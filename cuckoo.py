@@ -3,6 +3,6 @@ import sys
 
 sys.excepthook = cef.ExceptHook  # To shutdown all CEF processes on error
 cef.Initialize()
-cef.CreateBrowserSync(url='https://cuckoo.ee/submit', window_title='Cuckoo Sandbox').ToggleFullscreen()
+cef.CreateBrowserSync(url='https://cuckoo.ee', window_title='Cuckoo Sandbox').ToggleFullscreen()
 cef.MessageLoop()
 cef.Shutdown()

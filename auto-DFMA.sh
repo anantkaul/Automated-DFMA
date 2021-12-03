@@ -1,14 +1,16 @@
 #! /bin/bash
 
+clear
 echo 
-echo '     #################################################################### ' | lolcat
-figlet -f miniwi '     Welcome to Memory Forensics' | lolcat
-echo '     #################################################################### ' | lolcat
+echo '     ################################################################### ' | lolcat
+figlet -f miniwi '           Welcome to DFMA ' | lolcat
+echo '     ################################################################### ' | lolcat
 echo
-figlet -f miniwi '         Volatility Framework' | lolcat
-figlet -f miniwi '  Exclusively Automated by Anant Kaul' | lolcat
+figlet -f miniwi '  Digital Forensics | Malware Analysis' | lolcat
+figlet -f miniwi '        Automated by Anant Kaul' | lolcat
 echo 
-# eval $hashes
+
+hashes="echo '##############################################################################' | lolcat"
 
 good_bye() {
 
@@ -21,11 +23,14 @@ good_bye() {
     echo " >> Do check '$DIR' for Further Investigations ..."
     # echo " >> Outputs will be overwritten next time if not copied !!"
     echo
-    figlet -f Digital '        SPECIAL THANKS TO THE CREATORS' | lolcat
+    figlet -f Digital '    SPECIAL THANKS TO THE CONTRIBUTORS' | lolcat
     echo
-    figlet -f Kban 'Anant Kaul' | lolcat
-    figlet -f Kban '        AND' | lolcat
-    figlet -f Kban '  Volatility' | lolcat
+    figlet -f miniwi '  Digital Forensics | Malware Analysis' | lolcat
+    echo
+    eval $hashes
+    echo
+    figlet -f Merlin1 'DFMA' | lolcat
+    figlet -f Mirror '  Framework' | lolcat
     # figlet -f Digital 'SPECIAL THANKS TO THE CREATORS -- ©'
     exit
 }
@@ -33,18 +38,19 @@ good_bye() {
 # echo
 # read -p " >> Enter Full Path of Memory File: " path_to_file
 
-hashes="echo '###############################################################################' | lolcat"
+# if [ -z "$path_to_file" ]; then
+#     echo
+#     eval $hashes
+#     echo 
+#     echo " >> ERROR: Please Enter Full Path of Memory File as argument."
+#     exit
+# fi
 
-if [ -z "$1" ]; then
-    echo
-    eval $hashes
-    echo 
-    echo " >> ERROR: Please Enter Full Path of Memory File as argument."
-    exit
-fi
+py2=$(which python2)
+py3=$(which python3)
 
-volatility2="volatility/vol.py -f $1"
-volatility="volatility3/vol.py -f $1"
+volatility2="$py2 volatility/vol.py -f $path_to_file"
+volatility="$py3 volatility3/vol.py -f $path_to_file"
 render_pretty='-r pretty'
 render_csv='-r csv'
 
@@ -439,45 +445,124 @@ ProcDump() {
     echo 
 }
 
+cuckoo() {
+
+    $py2 $PWD/cuckoo.py 
+    rm -rf $PWD/webrtc_event_logs
+    rm -rf $PWD/blob_storage
+    clear
+    echo
+}
+
+volatility_menu() {
+
+    echo '     #################################################################### ' | lolcat
+    figlet -f miniwi '     Welcome to Memory Forensics' | lolcat
+    echo '     #################################################################### ' | lolcat
+    figlet -f miniwi '         Volatility Framework' | lolcat
+    figlet -f miniwi '  Exclusively Automated by Anant Kaul' | lolcat
+    echo
+    eval $hashes
+    
+    while true; do
+
+        echo
+        read -p " >> Enter Full Path of Memory File: " path_to_file
+        echo 
+
+        if [ -z "$path_to_file" ]; then
+            echo " >> ERROR: Please Enter Full Path of Memory File as argument ..."
+            echo 
+            eval $hashes
+        else
+            break
+        fi
+    done
+    while true; do
+
+        echo '##############################################################################' | lolcat
+        echo 
+        echo "        1   ->  ImageInfo                         12  ->  Timeliner"
+        echo "        2   ->  PsList                            13  ->  HashDump"
+        echo "        3   ->  PsScan                            14  ->  LsaDump"
+        echo "        4   ->  PsTree                            15  ->  ModScan"
+        echo "        5   ->  NetScan                           16  ->  FileScan"
+        echo "        6   ->  DllList                           17  ->  SvcScan"       
+        echo "        7   ->  Handles                           18  ->  CmdLine"
+        echo "        8   ->  GetSIDs                           19  ->  MalFind"
+        echo "        9   ->  Registry HiveList                 20  ->  MemDump (.dmp)"
+        echo "        10  ->  Registry HiveScan                 21  ->  ProcDump (.exe)"
+        echo "        11  ->  Registry UserAssist               22  ->  VirusTotal Analysis"
+        echo 
+        echo "        B   ->  Back                              Q   ->  Quit"
+        echo
+        read -p ' >> Which Volatile Memory Operation you wish to perform? ' op
+        case $op in
+            1) clear ; echo ; ImageInfo;;
+            2) clear ; echo ; PsList;;
+            3) clear ; echo ; PsScan;;
+            4) clear ; echo ; PsTree;;
+            5) clear ; echo ; NetScan;;
+            6) clear ; echo ; DllList;;
+            7) clear ; echo ; Handles;;
+            8) clear ; echo ; GetSIDs;;
+            9) clear ; echo ; RegistryHiveList;;
+            10) clear ; echo ; RegistryHiveScan;;
+            11) clear ; echo ; RegistryUserAssist;;
+            12) clear ; echo ; TimeLiner;;
+            13) clear ; echo ; HashDump;;
+            14) clear ; echo ; LsaDump;;
+            15) clear ; echo ; ModScan;;
+            16) clear ; echo ; FileScan;;
+            17) clear ; echo ; SvcScan;;
+            18) clear ; echo ; CmdLine;;
+            19) clear ; echo ; MalFind;;
+            20) clear ; echo ; MemDump;;
+            21) clear ; echo ; ProcDump;;
+            22) clear ; echo ; Virustotal;;
+            [Bb]* ) clear ; echo ; break;;
+            [Qq]* ) clear ; good_bye;;
+            * )  echo ; eval $hashes ; echo ; echo ' >> Please answer in range (1-22) or Go a step (B)ack or (q)uit ...'; echo ;;
+        esac
+    done
+}
+
+Virustotal() {
+    while true; do
+        echo '##############################################################################' | lolcat
+        echo 
+        echo "        1   ->  File"
+        echo "        2   ->  URL"
+        echo "        3   ->  Hash"
+        echo
+        echo "        B   ->  Back"
+        echo
+        read -p ' >> Which Framework you wish to perform analysis with? ' option
+        case $option in
+            1) clear ; echo ; volatility_menu;;
+            2) clear ; echo ; Virustotal;;
+            3) clear ; cuckoo;;
+            [Bb]* ) clear ; echo ; break;;
+            *) clear ; echo ; eval $hashes ; echo ; echo ' >> Please answer in range (1-3) or Go a step (B)ack or (q)uit ...'; echo ;;
+        esac
+    done
+}
+
 while true; do
-    echo '############################################################################### ' | lolcat
+    echo '##############################################################################' | lolcat
     echo 
-    echo "        1   ->  ImageInfo                         12  ->  Timeliner"
-    echo "        2   ->  PsList                            13  ->  HashDump"
-    echo "        3   ->  PsScan                            14  ->  LsaDump"
-    echo "        4   ->  PsTree                            15  ->  ModScan"
-    echo "        5   ->  NetScan                           16  ->  FileScan"
-    echo "        6   ->  DllList                           17  ->  SvcScan"       
-    echo "        7   ->  Handles                           18  ->  CmdLine"
-    echo "        8   ->  GetSIDs                           19  ->  MalFind"
-    echo "        9   ->  Registry HiveList                 20  ->  MemDump (.dmp)"
-    echo "        10  ->  Registry HiveScan                 21  ->  ProcDump (.exe)"
-    echo "        11  ->  Registry UserAssist               99  ->  Exit"
-    echo 
-    read -p ' >> Which Operation you wish to perform? ' op
-    case $op in
-        1) echo ; ImageInfo;;
-        2) echo ; PsList;;
-        3) echo ; PsScan;;
-        4) echo ; PsTree;;
-        5) echo ; NetScan;;
-        6) echo ; DllList;;
-        7) echo ; Handles;;
-        8) echo ; GetSIDs;;
-        9) echo ; RegistryHiveList;;
-        10) echo ; RegistryHiveScan;;
-        11) echo ; RegistryUserAssist;;
-        12) echo ; TimeLiner;;
-        13) echo ; HashDump;;
-        14) echo ; LsaDump;;
-        15) echo ; ModScan;;
-        16) echo ; FileScan;;
-        17) echo ; SvcScan;;
-        18) echo ; CmdLine;;
-        19) echo ; MalFind;;
-        20) echo ; MemDump;;
-        21) echo ; ProcDump;;
-        99) good_bye;;
-        * )  echo ; echo ' >> Please answer in range (1-21) or 99 to exit ...'; echo ;;
+    echo "        1   ->  Volatility"
+    echo "        2   ->  VirusTotal"
+    echo "        3   ->  Cuckoo Sandbox"
+    echo
+    echo "        Q   ->  Quit"
+    echo
+    read -p ' >> Which Framework you wish to perform analysis with? ' option
+    case $option in
+        1) clear ; echo ; volatility_menu;;
+        2) clear ; echo ; Virustotal;;
+        3) clear ; cuckoo;;
+        [Qq]* ) clear ; good_bye;;
+        *) clear ; echo ; eval $hashes ; echo ; echo ' >> Please answer in range (1-3) or (q)uit ...'; echo ;;
     esac
 done
