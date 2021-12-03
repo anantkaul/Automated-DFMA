@@ -24,7 +24,7 @@ html_template = """
 <!DOCTYPE html>
 <html style="font-size: 16px;">
   <head>
-    <title>VT Scan</title>
+    <title>VT Scan Report</title>
     <link rel="stylesheet" href="css/nc.css" media="screen">
     <link rel="stylesheet" href="css/first.css" media="screen">
     <script class="u-script" type="text/javascript" src="js/jquery-1.9.1.min.js" defer=""></script>
@@ -32,7 +32,7 @@ html_template = """
     <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
     <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aldrich:400">
   <!--===============================================================================================-->	
-	  <link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
+	  <link rel="icon" type="image/png" href="images/icons/virustotal.svg"/>
   <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
   <!--===============================================================================================-->
