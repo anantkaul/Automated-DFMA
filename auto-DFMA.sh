@@ -450,8 +450,6 @@ cuckoo() {
     $py2 $PWD/cuckoo.py 
     rm -rf $PWD/webrtc_event_logs
     rm -rf $PWD/blob_storage
-    clear
-    echo
 }
 
 volatility_menu() {
@@ -478,6 +476,9 @@ volatility_menu() {
             break
         fi
     done
+
+    clear
+    
     while true; do
 
         echo '##############################################################################' | lolcat
@@ -498,28 +499,28 @@ volatility_menu() {
         echo
         read -p ' >> Which Volatile Memory Operation you wish to perform? ' op
         case $op in
-            1) clear ; echo ; ImageInfo;;
-            2) clear ; echo ; PsList;;
-            3) clear ; echo ; PsScan;;
-            4) clear ; echo ; PsTree;;
-            5) clear ; echo ; NetScan;;
-            6) clear ; echo ; DllList;;
-            7) clear ; echo ; Handles;;
-            8) clear ; echo ; GetSIDs;;
-            9) clear ; echo ; RegistryHiveList;;
-            10) clear ; echo ; RegistryHiveScan;;
-            11) clear ; echo ; RegistryUserAssist;;
-            12) clear ; echo ; TimeLiner;;
-            13) clear ; echo ; HashDump;;
-            14) clear ; echo ; LsaDump;;
-            15) clear ; echo ; ModScan;;
-            16) clear ; echo ; FileScan;;
-            17) clear ; echo ; SvcScan;;
-            18) clear ; echo ; CmdLine;;
-            19) clear ; echo ; MalFind;;
-            20) clear ; echo ; MemDump;;
-            21) clear ; echo ; ProcDump;;
-            22) clear ; echo ; Virustotal;;
+            1) clear ; echo ; ImageInfo ; clear ; echo;;
+            2) clear ; echo ; PsList ; clear ; echo;;
+            3) clear ; echo ; PsScan ; clear ; echo;;
+            4) clear ; echo ; PsTree ; clear ; echo;;
+            5) clear ; echo ; NetScan ; clear ; echo;;
+            6) clear ; echo ; DllList ; clear ; echo;;
+            7) clear ; echo ; Handles ; clear ; echo;;
+            8) clear ; echo ; GetSIDs ; clear ; echo;;
+            9) clear ; echo ; RegistryHiveList ; clear ; echo;;
+            10) clear ; echo ; RegistryHiveScan ; clear ; echo;;
+            11) clear ; echo ; RegistryUserAssist ; clear ; echo;;
+            12) clear ; echo ; TimeLiner ; clear ; echo;;
+            13) clear ; echo ; HashDump ; clear ; echo;;
+            14) clear ; echo ; LsaDump ; clear ; echo;;
+            15) clear ; echo ; ModScan ; clear ; echo;;
+            16) clear ; echo ; FileScan ; clear ; echo;;
+            17) clear ; echo ; SvcScan ; clear ; echo;;
+            18) clear ; echo ; CmdLine ; clear ; echo;;
+            19) clear ; echo ; MalFind ; clear ; echo;;
+            20) clear ; echo ; MemDump ; clear ; echo;;
+            21) clear ; echo ; ProcDump ; clear ; echo;;
+            22) clear ; echo ; Virustotal ; clear ; echo;;
             [Bb]* ) clear ; echo ; break;;
             [Qq]* ) clear ; good_bye;;
             * )  echo ; eval $hashes ; echo ; echo ' >> Please answer in range (1-22) or Go a step (B)ack or (q)uit ...'; echo ;;
@@ -559,9 +560,9 @@ while true; do
     echo
     read -p ' >> Which Framework you wish to perform analysis with? ' option
     case $option in
-        1) clear ; echo ; volatility_menu;;
-        2) clear ; echo ; Virustotal;;
-        3) clear ; cuckoo;;
+        1) clear ; echo ; volatility_menu ; clear ; echo;;
+        2) clear ; echo ; Virustotal ; clear ; echo;;
+        3) clear ; cuckoo ; clear ; echo;;
         [Qq]* ) clear ; good_bye;;
         *) clear ; echo ; eval $hashes ; echo ; echo ' >> Please answer in range (1-3) or (q)uit ...'; echo ;;
     esac
