@@ -3,7 +3,7 @@
 import requests
 
 url = 'https://www.virustotal.com/vtapi/v2/file/scan'
-first_params = {'apikey': 'a06ff59f6a85d283dcc47caf6313a2e61490ae1d3662f253348617627bc59dcb'}
+first_params = {'apikey': '116f90799c472b55be9c7c317b90e1b80a441191c23b91c1583144d0fe5eaf01'}
 myfile = input("Enter the File Path: ")
 files = {'file': (myfile, open(myfile, 'rb'))}
 first_response = requests.post(url, files=files, params=first_params)
@@ -14,7 +14,7 @@ sha256 = first_parse['sha256']
 # # apikey = input("Enter your API Key: ")
 # resource = input("Enter the File Path or Hash: ")
 url = 'https://www.virustotal.com/vtapi/v2/file/report'
-params = {'apikey': 'a06ff59f6a85d283dcc47caf6313a2e61490ae1d3662f253348617627bc59dcb', 'resource': sha256}
+params = {'apikey': '116f90799c472b55be9c7c317b90e1b80a441191c23b91c1583144d0fe5eaf01', 'resource': sha256}
 response = requests.get(url, params=params)
 json_parse = response.json()
 # print(response.json())
