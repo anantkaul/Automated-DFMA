@@ -478,7 +478,8 @@ volatility_menu() {
     done
 
     clear
-    
+    echo
+
     while true; do
 
         echo '##############################################################################' | lolcat
