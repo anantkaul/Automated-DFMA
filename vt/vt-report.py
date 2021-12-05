@@ -6,6 +6,6 @@ import os
 
 sys.excepthook = cef.ExceptHook  # To shutdown all CEF processes on error
 cef.Initialize()
-cef.CreateBrowserSync(url='file://' + os.getcwd() + '/vt.html', window_title='Virustotal Report').ToggleFullscreen()
+cef.CreateBrowserSync(url='file:///' + os.getcwd() + '/vt.html', window_title='Virustotal Report').ToggleFullscreen()
 cef.MessageLoop()
 cef.Shutdown()

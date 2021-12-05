@@ -2,35 +2,23 @@
 
 import requests
 
-url = 'https://www.virustotal.com/vtapi/v2/file/scan'
-first_params = {'apikey': '116f90799c472b55be9c7c317b90e1b80a441191c23b91c1583144d0fe5eaf01'}
-myfile = input("Enter the File Path: ")
-files = {'file': (myfile, open(myfile, 'rb'))}
-first_response = requests.post(url, files=files, params=first_params)
-first_parse = first_response.json()
-# print(first_parse)
-sha256 = first_parse['sha256']
-
-# # apikey = input("Enter your API Key: ")
-# resource = input("Enter the File Path or Hash: ")
-url = 'https://www.virustotal.com/vtapi/v2/file/report'
-params = {'apikey': '116f90799c472b55be9c7c317b90e1b80a441191c23b91c1583144d0fe5eaf01', 'resource': sha256}
+url = 'https://www.virustotal.com/vtapi/v2/url/report'
+resource = input("Enter the Suspected URL: ")
+params = {'apikey': '116f90799c472b55be9c7c317b90e1b80a441191c23b91c1583144d0fe5eaf01', 'resource':resource}
 response = requests.get(url, params=params)
 json_parse = response.json()
 # print(response.json())
 
-vt_md5 = json_parse['md5']
-vt_sha256 = json_parse['sha256']
-vt_sha1 = json_parse['sha1']
+vt_url = json_parse['url']
 vt_scan_date = json_parse['scan_date']
 vt_positives = json_parse['positives']
 vt_total = json_parse['total']
 vt_scan_id = json_parse['scan_id']
 vt_permalink = json_parse['permalink']
 
-file_out = open('vt-result/vt.html', 'w')
+file_out = open('vt.html', 'w')
 
-# the html code which will go in the file vtscan-report.html
+# the html code which will go in the file vt-report.html
 html_template = """
 <!DOCTYPE html>
 <html style="font-size: 16px;">
@@ -71,6 +59,8 @@ html_template += f"""
 
   </head>
   <body> 
+
+    <br>
     <section class="u-backlink u-clearfix">
       <a><h4><b>©</b></h4></a>
 
@@ -78,6 +68,7 @@ html_template += f"""
         <span class="u-text-custom-color-1"><h4>Automated-DFMA</h4></span>
       </a>
     </section>
+    <br>
     <section class="u-clearfix u-section-1" src="" id="sec-04a6">
       <div class="u-clearfix u-sheet u-sheet-1">
         <img class="u-image u-image-1" src="images/g7bf7c2329c305b9f8ca009a4606b3211abd67f57553d5407c843d188f7cc7659f05463a89e2ec1bbac80d999b730d46013ef1ebed98eae6eeafe7ed3c42c5a9a_1280.png" data-image-width="1081" data-image-height="1280" data-animation-name="slideIn" data-animation-duration="1000" data-animation-direction="Right">
@@ -100,12 +91,12 @@ html_template += f"""
               <br>
               <br>
               <br>
-              <span class="u-text-custom-color-1">md5:</span>&nbsp; <span style="font-style: normal; font-size: 1.125rem;">{vt_md5}</span>
+              <span class="u-text-custom-color-1">  </span>&nbsp; <span style="font-style: normal; font-size: 1.125rem;">  </span>
               <br>
-              <span class="u-text-custom-color-1">sha1:</span>&nbsp; <span style="font-style: normal; font-size: 1rem;">
-                <span style="font-size: 1.125rem;">{vt_sha1}</span>
+              <span class="u-text-custom-color-1">  </span>&nbsp; <span style="font-style: normal; font-size: 1rem;">
+                <span style="font-size: 1.125rem;">  </span>
                 <br>
-                <span style="font-size: 1.25rem;" class="u-text-custom-color-1"><i>sha256:</i></span>&nbsp; <span style="font-size: 1.125rem;"> {vt_sha256}</span>
+                <span style="font-size: 1.25rem;" class="u-text-custom-color-1"><i>&nbsp;&nbsp;&nbsp;URL:</i></span>&nbsp; <span style="font-size: 1.125rem;"> {vt_url}</span>
               </span>
             </p>
           </div>
@@ -184,7 +175,7 @@ html_template += """
 
 """
 
-html_template += f"""
+html_template += """
     <section class="u-backlink u-clearfix u-grey-80">
       <a href="https://www.virustotal.com/gui/file/275a021bbfb6489e54d471899f7db9d1663fc695ec2fe2a2c4538aabf651fd0f/detection/f-275a021bbfb6489e54d471899f7db9d1663fc695ec2fe2a2c4538aabf651fd0f-1638549796" target="_blank">
         <span>Virustotal Report</span>

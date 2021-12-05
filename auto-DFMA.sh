@@ -57,6 +57,7 @@ render_csv='-r csv'
 location=$PWD
 DIR=$location/Investigations
 created=false
+created_virus=false
 
 ## Sample Loop
 # while true; do
@@ -445,6 +446,54 @@ ProcDump() {
     echo 
 }
 
+create_vt() {
+
+    if [ ! -d "$DIR/VirusTotal" ]; then
+        mkdir $DIR/VirusTotal
+    fi    
+
+    vt_counter=1
+    while true; do
+        if [ ! -d "$DIR/VirusTotal/$vt_counter" ]; then
+            vt_DIR="$DIR/VirusTotal/$vt_counter" 
+            # mkdir $vt_DIR
+            cp -r $location/vt/vt-files $DIR/VirusTotal
+            # mv $DIR/VirusTotal/vt-files $vt_DIR
+            break  
+        fi        
+        (( counter++ ))
+    done
+    created_virus=true
+}
+
+check_vt() {
+     if [[ "$created_virus" == false ]]; then 
+        create_vt
+    fi
+}
+
+Virustotal() {
+    while true; do
+        echo '##############################################################################' | lolcat
+        echo 
+        echo "        1   ->  File"
+        echo "        2   ->  URL"
+        echo "        3   ->  Hash"
+        echo
+        echo "        B   ->  Back                              Q   ->  Quit"
+        echo
+        read -p ' >> Which Operation you wish to perform with VirusTotal? ' virus_option
+        case $virus_option in
+            1) check_dir ; check_vt ; mkdir $DIR/VirusTotal/file_scans ; mkdir $DIR/VirusTotal/file_scans/$vt_counter ; mv $DIR/VirusTotal/vt-files/* $DIR/VirusTotal/file_scans/$vt_counter ; rmdir $DIR/VirusTotal/vt-files ; cd $DIR/VirusTotal/file_scans/$vt_counter ; clear ; echo ; $py3 "$location/vt/vt-filescan.py" ; $py2 "$location/vt/vt-report.py" ; rm -rf webrtc_event_logs ; rm -rf blob_storage ; cd $location ; clear ; echo;;
+            2) check_dir ; check_vt ; mkdir $DIR/VirusTotal/url_scans ; mkdir $DIR/VirusTotal/url_scans/$vt_counter ; mv $DIR/VirusTotal/vt-files/* $DIR/VirusTotal/url_scans/$vt_counter ; rmdir $DIR/VirusTotal/vt-files ; cd $DIR/VirusTotal/url_scans/$vt_counter ; clear ; echo ; $py3 "$location/vt/vt-urlscan.py" ; $py2 "$location/vt/vt-report.py" ; rm -rf webrtc_event_logs ; rm -rf blob_storage ; cd $location ; clear ; echo;;
+            3) check_dir ; check_vt ; mkdir $DIR/VirusTotal/hash_scans ; mkdir $DIR/VirusTotal/hash_scans/$vt_counter ; mv $DIR/VirusTotal/vt-files/* $DIR/VirusTotal/hash_scans/$vt_counter ; rmdir $DIR/VirusTotal/vt-files ; cd $DIR/VirusTotal/hash_scans/$vt_counter ; clear ; echo ; $py3 "$location/vt/vt-hashscan.py" ; $py2 "$location/vt/vt-report.py" ; rm -rf webrtc_event_logs ; rm -rf blob_storage ; cd $location ; clear ; echo;;
+            [Bb]* ) clear ; echo ; break;;
+            [Qq]* ) clear ; good_bye;;
+            *) clear ; echo ; eval $hashes ; echo ; echo ' >> Please answer in range (1-3) or Go a step (B)ack or (q)uit ...'; echo ;;
+        esac
+    done
+}
+
 cuckoo() {
 
     $py2 $PWD/cuckoo.py 
@@ -525,27 +574,6 @@ volatility_menu() {
             [Bb]* ) clear ; echo ; break;;
             [Qq]* ) clear ; good_bye;;
             * )  echo ; eval $hashes ; echo ; echo ' >> Please answer in range (1-22) or Go a step (B)ack or (q)uit ...'; echo ;;
-        esac
-    done
-}
-
-Virustotal() {
-    while true; do
-        echo '##############################################################################' | lolcat
-        echo 
-        echo "        1   ->  File"
-        echo "        2   ->  URL"
-        echo "        3   ->  Hash"
-        echo
-        echo "        B   ->  Back"
-        echo
-        read -p ' >> Which Framework you wish to perform analysis with? ' option
-        case $option in
-            1) clear ; echo ; volatility_menu;;
-            2) clear ; echo ; Virustotal;;
-            3) clear ; cuckoo;;
-            [Bb]* ) clear ; echo ; break;;
-            *) clear ; echo ; eval $hashes ; echo ; echo ' >> Please answer in range (1-3) or Go a step (B)ack or (q)uit ...'; echo ;;
         esac
     done
 }
