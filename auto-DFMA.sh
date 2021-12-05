@@ -49,8 +49,6 @@ good_bye() {
 py2=$(which python2)
 py3=$(which python3)
 
-volatility2="$py2 volatility/vol.py -f $path_to_file"
-volatility="$py3 volatility3/vol.py -f $path_to_file"
 render_pretty='-r pretty'
 render_csv='-r csv'
 
@@ -515,6 +513,7 @@ volatility_menu() {
 
         echo
         read -p " >> Enter Full Path of Memory File: " path_to_file
+        sed -e "s/^'//" -e "s/'$//" <<< $path_to_file
         echo 
 
         if [ -z "$path_to_file" ]; then
@@ -525,9 +524,14 @@ volatility_menu() {
             break
         fi
     done
-
+    
     clear
     echo
+
+    # volatility2="volatility -f $path_to_file"
+    # volatility="vol -f $path_to_file"
+    volatility2="$py2 volatility/vol.py -f $path_to_file"
+    volatility="$py3 volatility3/vol.py -f $path_to_file"
 
     while true; do
 
@@ -549,28 +553,28 @@ volatility_menu() {
         echo
         read -p ' >> Which Volatile Memory Operation you wish to perform? ' op
         case $op in
-            1) clear ; echo ; ImageInfo ; clear ; echo;;
-            2) clear ; echo ; PsList ; clear ; echo;;
-            3) clear ; echo ; PsScan ; clear ; echo;;
-            4) clear ; echo ; PsTree ; clear ; echo;;
-            5) clear ; echo ; NetScan ; clear ; echo;;
-            6) clear ; echo ; DllList ; clear ; echo;;
-            7) clear ; echo ; Handles ; clear ; echo;;
-            8) clear ; echo ; GetSIDs ; clear ; echo;;
-            9) clear ; echo ; RegistryHiveList ; clear ; echo;;
-            10) clear ; echo ; RegistryHiveScan ; clear ; echo;;
-            11) clear ; echo ; RegistryUserAssist ; clear ; echo;;
-            12) clear ; echo ; TimeLiner ; clear ; echo;;
-            13) clear ; echo ; HashDump ; clear ; echo;;
-            14) clear ; echo ; LsaDump ; clear ; echo;;
-            15) clear ; echo ; ModScan ; clear ; echo;;
-            16) clear ; echo ; FileScan ; clear ; echo;;
-            17) clear ; echo ; SvcScan ; clear ; echo;;
-            18) clear ; echo ; CmdLine ; clear ; echo;;
-            19) clear ; echo ; MalFind ; clear ; echo;;
-            20) clear ; echo ; MemDump ; clear ; echo;;
-            21) clear ; echo ; ProcDump ; clear ; echo;;
-            22) clear ; echo ; Virustotal ; clear ; echo;;
+            1) clear ; echo ; ImageInfo ; read -p "Press enter to continue ... " ; clear ; echo;;
+            2) clear ; echo ; PsList ; read -p "Press enter to continue ... " ; clear ; echo;;
+            3) clear ; echo ; PsScan ; read -p "Press enter to continue ... " ; clear ; echo;;
+            4) clear ; echo ; PsTree ; read -p "Press enter to continue ... " ; clear ; echo;;
+            5) clear ; echo ; NetScan ; read -p "Press enter to continue ... " ; clear ; echo;;
+            6) clear ; echo ; DllList ; read -p "Press enter to continue ... " ; clear ; echo;;
+            7) clear ; echo ; Handles ; read -p "Press enter to continue ... " ; clear ; echo;;
+            8) clear ; echo ; GetSIDs ; read -p "Press enter to continue ... " ; clear ; echo;;
+            9) clear ; echo ; RegistryHiveList ; read -p "Press enter to continue ... " ; clear ; echo;;
+            10) clear ; echo ; RegistryHiveScan ; read -p "Press enter to continue ... " ; clear ; echo;;
+            11) clear ; echo ; RegistryUserAssist ; read -p "Press enter to continue ... " ; clear ; echo;;
+            12) clear ; echo ; TimeLiner ; read -p "Press enter to continue ... " ; clear ; echo;;
+            13) clear ; echo ; HashDump ; read -p "Press enter to continue ... " ; clear ; echo;;
+            14) clear ; echo ; LsaDump ; read -p "Press enter to continue ... " ; clear ; echo;;
+            15) clear ; echo ; ModScan ; read -p "Press enter to continue ... " ; clear ; echo;;
+            16) clear ; echo ; FileScan ; read -p "Press enter to continue ... " ; clear ; echo;;
+            17) clear ; echo ; SvcScan ; read -p "Press enter to continue ... " ; clear ; echo;;
+            18) clear ; echo ; CmdLine ; read -p "Press enter to continue ... " ; clear ; echo;;
+            19) clear ; echo ; MalFind ; read -p "Press enter to continue ... " ; clear ; echo;;
+            20) clear ; echo ; MemDump ; read -p "Press enter to continue ... " ; clear ; echo;;
+            21) clear ; echo ; ProcDump ; read -p "Press enter to continue ... " ; clear ; echo;;
+            22) clear ; echo ; Virustotal ; read -p "Press enter to continue ... " ; clear ; echo;;
             [Bb]* ) clear ; echo ; break;;
             [Qq]* ) clear ; good_bye;;
             * )  echo ; eval $hashes ; echo ; echo ' >> Please answer in range (1-22) or Go a step (B)ack or (q)uit ...'; echo ;;
