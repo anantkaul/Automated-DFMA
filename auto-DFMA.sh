@@ -564,7 +564,7 @@ volatility_menu() {
             9) clear ; echo ; RegistryHiveList ; read -p "Press enter to continue ... " ; clear ; echo;;
             10) clear ; echo ; RegistryHiveScan ; read -p "Press enter to continue ... " ; clear ; echo;;
             11) clear ; echo ; RegistryUserAssist ; read -p "Press enter to continue ... " ; clear ; echo;;
-            12) clear ; echo ; TimeLiner ; read -p "Press enter to continue ... " ; clear ; echo;;
+            12) clear ; echo ; TimeLiner ; sleep 1 ; read -p "Press enter to continue ... " ; clear ; echo;;
             13) clear ; echo ; HashDump ; read -p "Press enter to continue ... " ; clear ; echo;;
             14) clear ; echo ; LsaDump ; read -p "Press enter to continue ... " ; clear ; echo;;
             15) clear ; echo ; ModScan ; read -p "Press enter to continue ... " ; clear ; echo;;
@@ -572,8 +572,8 @@ volatility_menu() {
             17) clear ; echo ; SvcScan ; read -p "Press enter to continue ... " ; clear ; echo;;
             18) clear ; echo ; CmdLine ; read -p "Press enter to continue ... " ; clear ; echo;;
             19) clear ; echo ; MalFind ; read -p "Press enter to continue ... " ; clear ; echo;;
-            20) clear ; echo ; MemDump ; read -p "Press enter to continue ... " ; clear ; echo;;
-            21) clear ; echo ; ProcDump ; read -p "Press enter to continue ... " ; clear ; echo;;
+            20) clear ; echo ; MemDump ; sleep 1 ; read -p "Press enter to continue ... " ; clear ; echo;;
+            21) clear ; echo ; ProcDump ; sleep 1 ; read -p "Press enter to continue ... " ; clear ; echo;;
             22) clear ; echo ; Virustotal ; read -p "Press enter to continue ... " ; clear ; echo;;
             [Bb]* ) clear ; echo ; break;;
             [Qq]* ) clear ; good_bye;;
