@@ -528,10 +528,10 @@ volatility_menu() {
     clear
     echo
 
-    # volatility2="volatility -f $path_to_file"
-    # volatility="vol -f $path_to_file"
-    volatility2="$py2 volatility/vol.py -f $path_to_file"
-    volatility="$py3 volatility3/vol.py -f $path_to_file"
+    volatility2="volatility -f $path_to_file"
+    volatility="vol -f $path_to_file"
+    # volatility2="$py2 volatility/vol.py -f $path_to_file"
+    # volatility="$py3 volatility3/vol.py -f $path_to_file"
 
     while true; do
 
