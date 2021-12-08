@@ -13,6 +13,8 @@ Full Documentation
 ---
 - [Wiki](https://fantastic-teeth-031.notion.site/Automated-DFMA-e8f7d52b3bcf4d1396c9a92df11c115d)  
 
+Getting Started 
+---
 ### Install
 ```sh
 git clone https://github.com/anantkaul/Automated-DFMA.git
@@ -25,6 +27,8 @@ cd Automated-DFMA
 ./auto-DFMA.sh
 ```
 
+Some Useful Operations
+---
 <!-- ### Sample Error & Resolution !! -->
 ### Main-Menu
 <img src="meta/images/1-Main-Menu.png">
