@@ -6,6 +6,7 @@ Volatility2 helps out when no availability of plugins in Volatility3 ...
 ### Install
 ```sh
 git clone https://github.com/anantkaul/Automated-DFMA.git
+cd Automated-DFMA
 ./install.sh
 ```
 
