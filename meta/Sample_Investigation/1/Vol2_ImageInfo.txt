@@ -1,0 +1,13 @@
+          Suggested Profile(s) : Win10x64_17134, Win10x64_14393, Win10x64_10586, Win10x64_16299, Win2016x64_14393, Win10x64_17763, Win10x64_15063 (Instantiated with Win10x64_15063)
+                     AS Layer1 : SkipDuplicatesAMD64PagedMemory (Kernel AS)
+                     AS Layer2 : FileAddressSpace (/run/media/alien/B3AST/Projects/BMU-Core/MemCapture/MSEDGEWIN10-20211207-194520.raw)
+                      PAE type : No PAE
+                           DTB : 0x1aa000L
+                          KDBG : 0xf801318b45e0L
+          Number of Processors : 2
+     Image Type (Service Pack) : 0
+                KPCR for CPU 0 : 0xfffff80130639000L
+                KPCR for CPU 1 : 0xffffbb01ee820000L
+             KUSER_SHARED_DATA : 0xfffff78000000000L
+           Image date and time : 2021-12-07 19:47:09 UTC+0000
+     Image local date and time : 2021-12-07 11:47:09 -0800

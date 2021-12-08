@@ -1,0 +1,6 @@
+"TreeDepth","PID","Process","Base","Size","Name","Path","LoadTime","File output"
+0,6632,"setup.exe","0x400000","0x16000","setup.exe","C:\Users\kaul\Downloads\setup.exe","2021-12-07 19:13:19.000000 ","Disabled"
+0,6632,"setup.exe","0x7fff54b30000","0x1ed000","ntdll.dll","C:\Windows\SYSTEM32\ntdll.dll","2021-12-07 19:13:19.000000 ","Disabled"
+0,6632,"setup.exe","0x7fff54560000","0x53000","wow64.dll","C:\Windows\System32\wow64.dll","2021-12-07 19:13:19.000000 ","Disabled"
+0,6632,"setup.exe","0x7fff528b0000","0x7c000","wow64win.dll","C:\Windows\System32\wow64win.dll","2021-12-07 19:13:19.000000 ","Disabled"
+0,6632,"setup.exe","0x779e0000","0x9000","wow64cpu.dll","C:\Windows\System32\wow64cpu.dll","2021-12-07 19:13:19.000000 ","Disabled"
