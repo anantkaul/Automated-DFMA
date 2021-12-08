@@ -40,3 +40,22 @@ Some Useful Operations
 ### Happy Ending !!
 <img src="meta/images/good_bye.png">
 
+---
+Thank you! 🐑 
+---
+**You can find me on**
+
+[<img align="middle" alt="GitHub" width="42px" src="https://img.icons8.com/color/48/000000/github-2.png"/>][GitHub]
+[<img align="middle" alt="Discord" width="42px" src="https://img.icons8.com/color/96/000000/discord-new-logo.png"/>][Discord]
+[<img align="middle" alt="LinkedIn" width="42px" src="https://img.icons8.com/fluent/48/000000/linkedin.png" />][linkedin]
+[<img align="middle" alt="Twitter" width="42px" src="https://img.icons8.com/fluent/48/000000/twitter.png" />][twitter]
+[<img align="middle" alt="Youtube" width="42px" src="https://img.icons8.com/color/youtube" />][youtube]
+
+[GitHub]: https://github.com/anantkaul
+[Discord]: https://discordapp.com/users/4N4N7#8325
+[LinkedIn]: https://www.linkedin.com/in/anant-kaul/
+[Twitter]: https://twitter.com/AnantKaul
+[YouTube]: https://www.youtube.com/channel/UC7bflmCt91Om9HlBZDcTAmw 
+[Invite]: https://discord.gg/2S8CHuqphD
+
+###### tags: `Mobile` `Android` `Pentesting` `InjuredAndroid`
