@@ -40,7 +40,6 @@ Some Useful Operations
 ### Happy Ending !!
 <img src="meta/images/good_bye.png">
 
----
 Thank you! 🐑 
 ---
 **You can find me on**
@@ -58,4 +57,4 @@ Thank you! 🐑
 [YouTube]: https://www.youtube.com/channel/UC7bflmCt91Om9HlBZDcTAmw 
 [Invite]: https://discord.gg/2S8CHuqphD
 
-###### tags: `Mobile` `Android` `Pentesting` `InjuredAndroid`
+###### tags: `Digital Forensics` `Malware Analysis` `Volatility` `VirusTotal` `Cuckoo` `Sandbox`
