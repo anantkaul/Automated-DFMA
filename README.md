@@ -29,18 +29,13 @@ cd Automated-DFMA
 
 Some Useful Operations
 ---
-<!-- ### Sample Error & Resolution !! -->
-### Main-Menu
-<img src="meta/images/1-Main-Menu.png">
+<!-- ### Sample Error & Resolution !! 
+<img src="meta/images/1-Main-Menu.png"> -->
 
-### Volatility Prompted for File !!
-<img src="meta/images/2-Vol-File-Prompt.png">
-
-### Driven Menu for Volatility Plugins !!
-<img src="meta/images/3-Vol-Menu.png">
-
-### Driven Menu for VirusTotal API !!
-<img src="meta/images/4-VT-Menu.png">
+- [Main-Menu](meta/images/1-Main-Menu.png)
+- [Volatility Prompted for File !!](meta/images/2-Vol-File-Prompt.png)
+- [Driven Menu for Volatility Plugins !!](meta/images/3-Vol-Menu.png)
+- [Driven Menu for VirusTotal API !!](meta/images/4-VT-Menu.png)
 
 ### Happy Ending !!
 <img src="meta/images/good_bye.png">
