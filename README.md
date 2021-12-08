@@ -7,7 +7,7 @@ The advanced Automated-DFMA framework is a Digital Forensics and Malware Analysi
 
 All these integrated in one single framework **Automated-DFMA** making the process automated and integrated through its menu driven command-line interface (CLI).
 
-Volatility2 helps out when no availability of plugins in Volatility3 ...
+(Volatility2 helps out when no availability of plugins in Volatility3)
   
 Full Documentation
 ---
